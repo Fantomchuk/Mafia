@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_choice_killed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.nazar.mafia.ChoiceKilled">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="90dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/title_0"
+        app:srcCompat="@drawable/emblem" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/ChoiceKilled_title_0"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_1night_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_ChoiceKilled_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/ChoiceKilled_title_11"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_1night_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ChoiceKilled_title_1"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBaseline="@+id/tv_ChoiceKilled_1night_10"
+        android:layout_alignBottom="@+id/tv_ChoiceKilled_1night_10"
+        android:layout_toEndOf="@+id/tv_ChoiceKilled_1night_10"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_1night_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignBaseline="@+id/tv_ChoiceKilled_1night_1"
+        android:layout_alignBottom="@+id/tv_ChoiceKilled_1night_1"
+        android:layout_toEndOf="@+id/tv_ChoiceKilled_1night_1"
+        android:text="@string/PlayerPage_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_1night_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayersInGameRole_title_2"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:onClick="onTextClickChoiceKilled"
+        android:layout_alignBaseline="@+id/tv_ChoiceKilled_1night_2"
+        android:layout_alignBottom="@+id/tv_ChoiceKilled_1night_2"
+        android:layout_toEndOf="@+id/tv_ChoiceKilled_1night_2" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_2night_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_ChoiceKilled_1night_3"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/ChoiceKilled_title_11"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_2night_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ChoiceKilled_title_2"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBaseline="@+id/tv_ChoiceKilled_2night_10"
+        android:layout_alignBottom="@+id/tv_ChoiceKilled_2night_10"
+        android:layout_toEndOf="@+id/tv_ChoiceKilled_2night_10"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_2night_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignBaseline="@+id/tv_ChoiceKilled_2night_1"
+        android:layout_alignBottom="@+id/tv_ChoiceKilled_2night_1"
+        android:layout_toEndOf="@+id/tv_ChoiceKilled_1night_1"
+        android:text="@string/PlayerPage_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_2night_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayersInGameRole_title_2"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:onClick="onTextClickChoiceKilled"
+        android:layout_alignBaseline="@+id/tv_ChoiceKilled_2night_2"
+        android:layout_alignBottom="@+id/tv_ChoiceKilled_2night_2"
+        android:layout_toEndOf="@+id/tv_ChoiceKilled_2night_2" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_3night_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_ChoiceKilled_2night_3"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/ChoiceKilled_title_11"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_3night_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ChoiceKilled_title_3"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBaseline="@+id/tv_ChoiceKilled_3night_10"
+        android:layout_alignBottom="@+id/tv_ChoiceKilled_3night_10"
+        android:layout_toEndOf="@+id/tv_ChoiceKilled_3night_10"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_3night_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignBaseline="@+id/tv_ChoiceKilled_3night_1"
+        android:layout_alignBottom="@+id/tv_ChoiceKilled_3night_1"
+        android:layout_toEndOf="@+id/tv_ChoiceKilled_1night_1"
+        android:text="@string/PlayerPage_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_3night_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayersInGameRole_title_2"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:onClick="onTextClickChoiceKilled"
+        android:layout_alignBaseline="@+id/tv_ChoiceKilled_3night_2"
+        android:layout_alignBottom="@+id/tv_ChoiceKilled_3night_2"
+        android:layout_toEndOf="@+id/tv_ChoiceKilled_3night_2" />
+
+    <Button
+        android:id="@+id/bt_ChoiceKilled_cancel_killed"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_ChoiceKilled_3night_3"
+        android:text="@string/ChoiceKilled_title_4"
+        android:onClick="onTextClickChoiceKilled"
+        />
+
+    <Button
+        android:id="@+id/bt_ChoiceKilled_next"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@+id/bt_ChoiceKilled_cancel_killed"
+        android:text="@string/PlayersInGameRole_title_7"
+        android:onClick="onTextClickChoiceKilled"
+        />
+
+    <TextView
+        android:id="@+id/tv_ChoiceKilled_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_below="@+id/bt_ChoiceKilled_next"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/img_ChoiceKilled_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:onClick="onTextClickChoiceKilled"
+        android:contentDescription="@string/title_1"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+</RelativeLayout>

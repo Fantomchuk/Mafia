@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_player_in_game"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.nazar.mafia.PlayerInGame">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="90dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/title_0"
+        app:srcCompat="@drawable/emblem" />
+
+    <TextView
+        android:id="@+id/tv_PlayerInGame_title"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="10dp"
+        android:text="@string/PlayerInGame_title_0"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp" />
+
+    <AutoCompleteTextView
+        android:id="@+id/aCtV_PlayerInGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_PlayerInGame_title"
+        android:layout_margin="10dp"
+        android:ems="25"
+        android:hint="@string/PlayersInGame_title_11"
+        android:textAlignment="center"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/bt_PlayerInGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/PlayerInGame_title_2"
+        android:layout_below="@+id/aCtV_PlayerInGame"
+        android:onClick="onTextClickPlayerInGame"
+        />
+
+    <TextView
+        android:id="@+id/tv_PlayerInGame_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_below="@+id/bt_PlayerInGame"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/img_PlayerInGame_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/title_1"
+        android:onClick="onTextClickPlayerInGame"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+</RelativeLayout>

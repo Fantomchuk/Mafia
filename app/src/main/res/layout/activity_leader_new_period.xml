@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_leader_new_period"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.nazar.mafia.LeaderNewPeriod">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="90dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/title_0"
+        app:srcCompat="@drawable/emblem" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="10dp"
+        android:text="@string/LeaderNewPeriod_title_0"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_LeaderNewPeriod_title"
+        android:layout_marginTop="20dp"
+        android:text="@string/LeaderNewPeriod_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_1_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_LeaderNewPeriod_1"
+        android:layout_alignBottom="@+id/tv_LeaderNewPeriod_1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tv_LeaderNewPeriod_3"
+        android:text="@string/PlayerPage_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_1_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_LeaderNewPeriod_1"
+        android:layout_alignBottom="@+id/tv_LeaderNewPeriod_1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tv_LeaderNewPeriod_1_1"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_LeaderNewPeriod_1"
+        android:layout_marginTop="5dp"
+        android:text="@string/LeaderNewPeriod_title_2"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_2_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_LeaderNewPeriod_2"
+        android:layout_alignBottom="@+id/tv_LeaderNewPeriod_2"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tv_LeaderNewPeriod_3"
+        android:text="@string/PlayerPage_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_2_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_LeaderNewPeriod_2"
+        android:layout_alignBottom="@+id/tv_LeaderNewPeriod_2"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tv_LeaderNewPeriod_2_1"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_LeaderNewPeriod_2"
+        android:layout_marginTop="5dp"
+        android:text="@string/LeaderNewPeriod_title_3"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_3_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_LeaderNewPeriod_3"
+        android:layout_alignBottom="@+id/tv_LeaderNewPeriod_3"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tv_LeaderNewPeriod_3"
+        android:text="@string/PlayerPage_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_3_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_LeaderNewPeriod_3"
+        android:layout_alignBottom="@+id/tv_LeaderNewPeriod_3"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tv_LeaderNewPeriod_3_1"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_LeaderNewPeriod_3"
+        android:layout_marginTop="15dp"
+        android:textAlignment="center"
+        android:text="@string/LeaderNewPeriod_title_4"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/et_LeaderNewPeriod_periodName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:hint="@string/LeaderNewPeriod_title_5"
+        android:layout_below="@+id/tv_LeaderNewPeriod_4"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/bt_LeaderNewPeriod_addPeriod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/NewTimePeriod_title_4"
+        android:layout_below="@+id/et_LeaderNewPeriod_periodName"
+        android:onClick="onTextClickLeaderNewPeriod"
+        />
+
+    <TextView
+        android:id="@+id/tv_LeaderNewPeriod_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_below="@+id/bt_LeaderNewPeriod_addPeriod"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/img_LeaderNewPeriod_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/title_1"
+        android:onClick="onTextClickLeaderNewPeriod"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+
+</RelativeLayout>

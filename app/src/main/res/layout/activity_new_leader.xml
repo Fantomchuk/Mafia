@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_new_leader"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.nazar.mafia.NewLeader">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="90dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/title_0"
+        app:srcCompat="@drawable/emblem" />
+
+    <TextView
+        android:id="@+id/tv_NewLeader_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:fontFamily="casual"
+        android:text="@string/NewLeader_title_1"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_NewLeader_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_NewLeader_1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/PlayerPage_title_0"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_NewLeader_name_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_NewLeader_name"
+        android:layout_alignBottom="@+id/tv_NewLeader_name"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/tv_NewLeader_password2"
+        android:text="@string/PlayerPage_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/eT_NewLeader_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_NewLeader_name_1"
+        android:layout_alignBottom="@+id/tv_NewLeader_name_1"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/tv_NewLeader_name_1"
+        android:ems="10"
+        android:hint="@string/PlayerPage_title_0"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/tv_NewLeader_surname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eT_NewLeader_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/PlayerPage_title_2"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_NewLeader_surname_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_NewLeader_surname"
+        android:layout_alignBottom="@+id/tv_NewLeader_surname"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/tv_NewLeader_password2"
+        android:text="@string/PlayerPage_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/eT_NewLeader_surname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_NewLeader_surname_1"
+        android:layout_alignBottom="@+id/tv_NewLeader_surname_1"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/tv_NewLeader_surname_1"
+        android:ems="10"
+        android:hint="@string/PlayerPage_title_2"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/tv_NewLeader_password1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eT_NewLeader_surname"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/NewLeader_title_2"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_NewLeader_password1_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_NewLeader_password1"
+        android:layout_alignBottom="@+id/tv_NewLeader_password1"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/tv_NewLeader_password2"
+        android:text="@string/PlayerPage_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/eT_NewLeader_password_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_NewLeader_password1_1"
+        android:layout_alignBottom="@+id/tv_NewLeader_password1_1"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/tv_NewLeader_password1_1"
+        android:ems="10"
+        android:hint="@string/NewLeader_title_2"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/tv_NewLeader_password2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eT_NewLeader_password_1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/NewLeader_title_3"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_NewLeader_password2_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_NewLeader_password2"
+        android:layout_alignBottom="@+id/tv_NewLeader_password2"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/tv_NewLeader_password2"
+        android:text="@string/PlayerPage_title_1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/eT_NewLeader_password_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_NewLeader_password2_1"
+        android:layout_alignBottom="@+id/tv_NewLeader_password2_1"
+        android:layout_marginLeft="5dp"
+        android:layout_toEndOf="@+id/tv_NewLeader_password2_1"
+        android:ems="10"
+        android:hint="@string/NewLeader_title_2"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/bt_NewLeader_add_leader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eT_NewLeader_password_2"
+        android:layout_marginTop="10dp"
+        android:onClick="onTextClickNewLeader"
+        android:text="@string/NewPlayer_title_5" />
+
+    <TextView
+        android:id="@+id/tv_NewLeader_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_NewLeader_add_leader"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/img_NewLeader_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/title_1"
+        android:onClick="onTextClickNewLeader"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+</RelativeLayout>

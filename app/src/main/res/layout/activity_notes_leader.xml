@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_notes_leader"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.nazar.mafia.NotesLeader">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="90dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/title_0"
+        app:srcCompat="@drawable/emblem" />
+
+    <TextView
+        android:id="@+id/tv_NotesLeader_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="casual"
+        android:text="@string/NotesLeader_title_1"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_NotesLeader_view_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_NotesLeader_1"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/bt_NotesLeader_add_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onTextClickNotesLeader_view_1"
+            android:text="@string/NotesLeader_title_2" />
+
+        <Button
+            android:id="@+id/bt_NotesLeader_show_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onTextClickNotesLeader_view_1"
+            android:text="@string/NotesLeader_title_3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_NotesLeader_view_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_NotesLeader_1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_NotesLeader_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/NotesLeader_title_4"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_NotesLeader_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/PlayerPage_title_1"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/eT_NotesLeader_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:ems="10"
+                android:hint="@string/NotesLeader_title_5"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/eT_NotesLeader_notes"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="5dp"
+            android:gravity="bottom"
+            android:hint="@string/NotesLeader_title_5"
+            android:inputType="textMultiLine"
+            android:textAlignment="textEnd" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_NotesLeader_cancel_notes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:onClick="onTextClickNotesLeader_view_2"
+                android:text="@string/NotesLeader_title_7" />
+
+            <Button
+                android:id="@+id/bt_NotesLeader_save_notes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:onClick="onTextClickNotesLeader_view_2"
+                android:text="@string/NotesLeader_title_6" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_NotesLeader_view_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_NotesLeader_1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/lv_NotesLeader"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp" />
+
+        <Button
+            android:id="@+id/bt_NotesLeader_cancel_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onTextClickNotesLeader_view_3"
+            android:text="@string/NotesLeader_title_7" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_NotesLeader_view_4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_NotesLeader_1"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:fillViewport="true"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_NotesLeader__view_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_NotesLeader__view_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_NotesLeader_delete_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:onClick="onTextClickNotesLeader_view_4"
+                android:text="@string/NotesLeader_title_8" />
+
+            <Button
+                android:id="@+id/bt_NotesLeader_edit_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:onClick="onTextClickNotesLeader_view_4"
+                android:text="@string/NotesLeader_title_11" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/bt_NotesLeader_cancel_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onTextClickNotesLeader_view_4"
+            android:text="@string/NotesLeader_title_7" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_NotesLeader_view_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_NotesLeader_1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <TextView
+            android:id="@+id/tv_NotesLeader_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/NotesLeader_title_4"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textAlignment="center"/>
+
+
+        <EditText
+            android:id="@+id/eT_NotesLeader_notes_edit"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="5dp"
+            android:gravity="bottom"
+            android:hint="@string/NotesLeader_title_5"
+            android:inputType="textMultiLine"
+            android:textAlignment="textEnd" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_NotesLeader_cancel_notes_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:onClick="onTextClickNotesLeader_view_5"
+                android:text="@string/NotesLeader_title_7" />
+
+            <Button
+                android:id="@+id/bt_NotesLeader_save_notes_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:onClick="onTextClickNotesLeader_view_5"
+                android:text="@string/NotesLeader_title_6" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_NotesLeader_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/title_1"
+        android:onClick="onTextClickNotesLeader_view_1"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+</RelativeLayout>

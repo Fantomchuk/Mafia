@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.nazar.mafia">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UserChoice"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UserMain"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Coordinates"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TitleUser"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayersList"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayerPage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LeaderMain"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewPlayer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditPlayer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewLeader"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditLeader"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewGame"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayersInGame"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayersInGameList"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayerInGame"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayersInGameRole"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChoiceRole"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StartGame"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ChoiceKilled"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChoicePlayer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ShowGame"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NotesLeader"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RatingChoise"
+            android:screenOrientation="portrait" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".NewTimePeriod"
+            android:screenOrientation="portrait" />
+        <activity android:name=".RatingPeriod" />
+        <activity android:name=".ShowRating" />
+        <activity android:name=".LeaderNewPeriod" />
+        <activity android:name=".PeriodsList"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_rating_choise"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.nazar.mafia.RatingChoise">
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_width="90dp"
+        android:layout_height="110dp"
+        app:srcCompat="@drawable/emblem"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView"
+        android:contentDescription="@string/title_0" />
+
+    <TextView
+        android:id="@+id/tV_RatingChoise_0"
+        android:layout_below="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/RatingChoise_title_0"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textAllCaps="true"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:layout_below="@+id/tV_RatingChoise_0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tV_RatingChoise_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/RatingChoise_title_1"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp"
+            android:clickable="true"
+            android:onClick="onTextClickRatingChoise"/>
+
+        <TextView
+            android:id="@+id/tV_RatingChoise_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/RatingChoise_title_2"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:onClick="onTextClickRatingChoise"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_RatingChoise_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:contentDescription="@string/title_1"
+        android:onClick="onTextClickRatingChoise"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+</RelativeLayout>

@@ -1,0 +1,267 @@
+<resources>
+    <string name="app_name">MAFIA</string>
+
+    <string name="title_0">emblem</string>
+    <string name="title_1">back</string>
+
+    <string name="dialog_pass_title_1">Nick Name:</string>
+    <string name="dialog_pass_title_2">Name</string>
+    <string name="dialog_pass_title_3">Password:</string>
+    <string name="dialog_pass_title_4">ok</string>
+    <string name="dialog_pass_title_5">Logging in</string>
+
+    <string name="UserChoice_title_1">я:</string>
+    <string name="UserChoice_title_2">гравець</string>
+    <string name="UserChoice_title_3">ведучий</string>
+    <string name="UserChoice_title_4">Ведучого з таким іменем не існує!</string>
+    <string name="UserChoice_title_5">Пароль не вірний</string>
+
+    <string name="UserMain_title_1">Наші координати клубу</string>
+    <string name="UserMain_title_2">Гравці нашого клубу</string>
+    <string name="UserMain_title_3">Рейтинг</string>
+
+    <string name="Coordinates_title_1">Подзвонити до нас</string>
+    <string name="Coordinates_title_2">Місце положення клубу на карті</string>
+    <string name="Coordinates_title_3">Наша сторінка вКонтакті</string>
+
+    <string name="TitleUser_title_1">Президент клубу</string>
+    <string name="TitleUser_title_2">Віце президент клубу</string>
+    <string name="TitleUser_title_3">Сенат клубу</string>
+    <string name="TitleUser_title_4">Члени клубу</string>
+    <string name="TitleUser_title_5">Кандидати в члени клубу</string>
+    <string name="TitleUser_title_6">Гості клубу</string>
+    <string name="TitleUser_title_7">Ведучі клубу</string>
+
+    <string name="item_user_0">:</string>
+
+    <string name="PlayersList_title_0">Для категорії: \"</string>
+    <string name="PlayersList_title_1">\", не ісує жодного запису.</string>
+    <string name="PlayerPage_title_0">Ім\'я</string>
+    <string name="PlayerPage_title_1">:</string>
+    <string name="PlayerPage_title_2">Прізвище</string>
+    <string name="PlayerPage_title_3">Почав/ла грати від</string>
+    <string name="PlayerPage_title_4">Редагувати гравця</string>
+
+
+    <string name="LeaderMain_title_1">Додати нового гравця</string>
+    <string name="LeaderMain_title_2">Додати нового ведучого</string>
+    <string name="LeaderMain_title_3">Гравці клубу</string>
+    <string name="LeaderMain_title_4">Почати гру</string>
+    <string name="LeaderMain_title_5">Показати ігри</string>
+    <string name="LeaderMain_title_6">Рейтинг</string>
+    <string name="LeaderMain_title_7">Нотатки</string>
+
+    <string name="NewPlayer_title_1">Реєстрвція нового гравця</string>
+    <string name="NewPlayer_title_2">Нікнейм</string>
+    <string name="NewPlayer_title_3">Статус гравця</string>
+    <string name="NewPlayer_title_4">Задати</string>
+    <string name="NewPlayer_title_5">Зареєструвати</string>
+    <string name="NewPlayer_title_6">Гравець \u0020</string>
+    <string name="NewPlayer_title_7">\u0020 вже зареєстрований в клубі. Нікнейм цього гравця: \u0020</string>
+    <string name="NewPlayer_title_8">Не заповнено поле імені</string>
+    <string name="NewPlayer_title_9">Не заповнено поле прізвища</string>
+    <string name="NewPlayer_title_10">Не заповнено поле нікнейму</string>
+    <string name="NewPlayer_title_11">Не вказано дати</string>
+    <string name="NewPlayer_title_12">Змінити</string>
+    <string name="NewPlayer_title_13">Відмінити</string>
+    <string name="NewPlayer_title_14">Даний гравець не внесений до списків клубу</string>
+
+    <string name="EditPlayer_title_1">Зміна даних гравця</string>
+    <string name="EditPlayer_title_2">Редагувати дані</string>
+    <string name="EditPlayer_title_3">Зміни не підтверджено</string>
+
+    <string name="NewLeader_title_1">Реєстрація нового ведучого</string>
+    <string name="NewLeader_title_2">Пароль</string>
+    <string name="NewLeader_title_3">Повторіть пароль</string>
+    <string name="NewLeader_title_4">Не вказано пароля</string>
+    <string name="NewLeader_title_5">Не підтверджено пароль</string>
+    <string name="NewLeader_title_6">Паролі різняться, введіть їх ще раз</string>
+    <string name="NewLeader_title_7">Гравець, якого Ви хочете зробити ведучим не зареєстрований в жодному з списків клубу. Якщо ж Ви хочете його зробити ведучим, то спочатку зареєструйте його як нового гравця.</string>
+    <string name="NewLeader_title_8">Реєстрація ведучого не закінчена</string>
+    <string name="NewLeader_title_9">Гравець з нікнеймом \u0020</string>
+    <string name="NewLeader_title_10">. Вже зареєстрований як ведучий.</string>
+
+    <string name="EditLeader_title_1">Зміна пароля для ведучого</string>
+    <string name="EditLeader_title_2">Змінити пароль</string>
+    <string name="EditLeader_title_3">Старий пароль</string>
+    <string name="EditLeader_title_4">Не вірний старий пароль</string>
+
+    <string name="NewGame_title_0">Нова гра</string>
+    <string name="NewGame_title_1">Дата гри</string>
+    <string name="NewGame_title_2">Номер гри</string>
+    <string name="NewGame_title_3">Ведучий гри</string>
+    <string name="NewGame_title_4">Додати гравців</string>
+    <string name="NewGame_title_5">Не коректно заповнено поле ведучого гри. Почніть вписувати нікнейм, і виберіть ведучого з випадаючого списку!</string>
+    <string name="NewGame_title_6">Ви не вибрали дату гри!</string>
+    <string name="NewGame_title_7">Помилка при введені номеру гри!</string>
+    <string name="NewGame_title_8">Помилка при введені кількості ігор!</string>
+    <string name="NewGame_title_9">Перейти до додавання гравців?</string>
+    <string name="NewGame_title_10">Гру проводить \u0020</string>
+    <string name="NewGame_title_11">. \nНомер гри: \u0020</string>
+    <string name="NewGame_title_12">. \nвід: \u0020</string>
+    <string name="NewGame_title_13">Перейти</string>
+
+    <string name="PlayersInGame_title_0">Заповніть поля гравців. \nВ відповідності як вони сидять.</string>
+    <string name="PlayersInGame_title_00">Гравець \u0020</string>
+    <string-array name="PlayersInGame_title_number">
+        <item>№1</item>
+        <item>№2</item>
+        <item>№3</item>
+        <item>№4</item>
+        <item>№5</item>
+        <item>№6</item>
+        <item>№7</item>
+        <item>№8</item>
+        <item>№9</item>
+        <item>№10</item>
+    </string-array>
+    <string name="PlayersInGame_title_11">подай нікнейм \u0020</string>
+    <string name="PlayersInGame_title_1">Роздача ролей</string>
+    <string name="PlayersInGame_title_2">Новий гравець</string>
+
+    <string name="PlayerInGame_title_0">Почніть вписувати нікнейм, і виберіть з випадаючого списку.</string>
+    <string name="PlayerInGame_title_1">му гравцю</string>
+    <string name="PlayerInGame_title_2">прийняти дані</string>
+    <string name="PlayerInGame_title_3">\u0020 вже в списку під №</string>
+    <string name="PlayerInGame_title_4">\u0020 (ведучий гри, не грає)</string>
+
+    <string name="PlayersInGameRole_title_0">Вкажи наступні ролі для гравців</string>
+    <string name="PlayersInGameRole_title_1">Роль дона</string>
+    <string name="PlayersInGameRole_title_2">вкажи гравця</string>
+    <string name="PlayersInGameRole_title_3">Роль шерифа</string>
+    <string name="PlayersInGameRole_title_4">Роль 1-ї мафії</string>
+    <string name="PlayersInGameRole_title_5">Роль 2-ї мафії</string>
+    <string name="PlayersInGameRole_title_6">Анулювати всі ролі</string>
+    <string name="PlayersInGameRole_title_7">Перейти до гри</string>
+    <string name="PlayersInGameRole_title_8">вказано</string>
+    <string name="PlayersInGameRole_title_9">Не подано всіх ролей</string>
+    <string name="PlayersInGameRole_title_10">Вибраний Вами гравець вже має роль</string>
+    <string name="PlayersInGameRole_title_11">Вами не було вибрано жодного гравця</string>
+    <string name="PlayersInGameRole_title_12">\u0020 віддати гравцю</string>
+    <string name="PlayersInGameRole_title_13">Роль мафії</string>
+
+    <string name="PlayersInGameList_title_0">Покажи ролі</string>
+    <string name="PlayersInGameList_title_1">Додай вбитих вночі</string>
+    <string name="PlayersInGameList_title_2">Хід гри</string>
+    <string name="PlayersInGameList_title_3">Кращий гравець</string>
+    <string name="PlayersInGameList_title_4">Переможці</string>
+    <string name="PlayersInGameList_title_5">Перевірити всі дані, і вивести результат гри на  екран</string>
+    <string name="PlayersInGameList_title_6">Завершити гру</string>
+    <string name="PlayersInGameList_title_7">жодної мафії</string>
+    <string name="PlayersInGameList_title_8">1 мафія</string>
+    <string name="PlayersInGameList_title_9">2 мафії</string>
+    <string name="PlayersInGameList_title_10">3 мафії</string>
+    <string name="PlayersInGameList_title_11">Перемога</string>
+    <string name="PlayersInGameList_title_12">Програш</string>
+    <string name="PlayersInGameList_title_13">Самостріл</string>
+    <string name="PlayersInGameList_title_14">МИРНИЙ</string>
+    <string name="PlayersInGameList_title_15">МАФІЯ</string>
+    <string name="PlayersInGameList_title_16">ШЕРИФ</string>
+    <string name="PlayersInGameList_title_17">ДОН</string>
+
+    <string name="ChoiceKilled_title_0">Гравців які:</string>
+    <string name="ChoiceKilled_title_11">Вбитий в</string>
+    <string name="ChoiceKilled_title_1">1шу ніч</string>
+    <string name="ChoiceKilled_title_2">2гу ніч</string>
+    <string name="ChoiceKilled_title_3">3тю ніч</string>
+    <string name="ChoiceKilled_title_4">Анулювати всі вбивства</string>
+    <string name="ChoiceKilled_title_5">Вибраний Вами гравець вже вбитий</string>
+    <string name="ChoiceKilled_title_6">Ніхто</string>
+
+    <string name="dialog_CourseGame_title_0">Введіть кількість правельно вказаних мафій. \n Результат може бути 0,1,2,3. \n Якщо був самостріл, вкажіть 0</string>
+    <string name="dialog_CourseGame_title_1">0,1,2,3?</string>
+    <string name="dialog_StartGame_title_1">Виберіть переможців гри</string>
+    <string name="dialog_StartGame_title_2">мирні</string>
+    <string name="dialog_StartGame_title_3">мафія</string>
+    <string name="dialog_StartGame_title_4">Вийти з даної активності?</string>
+    <string name="dialog_StartGame_title_5">Якщо Ви вийдете з цієї активності, то всі дані які Ви тут ввели, будуть втрачені!</string>
+    <string name="dialog_StartGame_title_6">закрити і вийти</string>
+
+    <string name="StartGame_title_0">Гра номер</string>
+    <string name="StartGame_title_1">Покажи гравців</string>
+    <string name="StartGame_title_2">Ви не вказали всіх вбитих гравців вночі!</string>
+    <string name="StartGame_title_3">Ви не вказали хід гри!</string>
+    <string name="StartGame_title_4">Ви не вказали кращого гравця гри!</string>
+    <string name="StartGame_title_5">Ви не вказали команду переможців!</string>
+
+    <string name="item_result_title_0">Роль гравця</string>
+    <string name="item_result_title_1">Кращий хід гри</string>
+    <string name="item_result_title_2">Результат гри</string>
+
+    <string name="ShowGame_title_0">Задайте період для ігор</string>
+    <string name="ShowGame_title_1">включно від:\u0020</string>
+    <string name="ShowGame_title_2">включно до:\u0020</string>
+    <string name="ShowGame_title_3">Пошук</string>
+    <string name="ShowGame_title_4">Не вказано проміжку часу</string>
+    <string name="ShowGame_title_5">На даному проміжку часу не має жодної гри</string>
+
+    <string name="item_game_title_0">Гра №</string>
+    <string name="item_game_title_1">від</string>
+
+    <string name="NotesLeader_title_1">Нотатки для ведучих</string>
+    <string name="NotesLeader_title_2">Створити нову нотатку</string>
+    <string name="NotesLeader_title_3">Показати всі нотатки</string>
+    <string name="NotesLeader_title_4">Назва для нотатки</string>
+    <string name="NotesLeader_title_5">назва</string>
+    <string name="NotesLeader_title_6">зберегти</string>
+    <string name="NotesLeader_title_7">відмінити</string>
+    <string name="NotesLeader_title_8">видалити</string>
+    <string name="NotesLeader_title_9">Відсутня назва нотатки. Додайте її!</string>
+    <string name="NotesLeader_title_10">Відсутня Нотатка. Додайте її!</string>
+    <string name="NotesLeader_title_11">редагувати</string>
+    <string name="NotesLeader_title_12">Видалити нотатку?</string>
+    <string name="NotesLeader_title_13">Редагувати нотатку?</string>
+
+    <string name="RatingChoise_title_0">рейтинг</string>
+    <string name="RatingChoise_title_1">Задати свій період для результату</string>
+    <string name="RatingChoise_title_2">Вибрати період</string>
+    <string name="RatingChoise_title_3">Періоди</string>
+
+    <string name="NewTimePeriod_title_0">Задайти проміжок часу для розрахунку рейтинга</string>
+    <string name="NewTimePeriod_title_1">Введіть мінімальну кількість ігор яку повинен зіграти кожен гравець для того, щоб попасти в рейтинг</string>
+    <string name="NewTimePeriod_title_2">мінімально 1 гра</string>
+    <string name="NewTimePeriod_title_3">Показати рейтинг</string>
+    <string name="NewTimePeriod_title_4">створити період</string>
+    <string name="NewTimePeriod_title_5">Створення нового періоду:\u0020</string>
+    <string name="NewTimePeriod_title_6">Створити період від\u0020</string>
+    <string name="NewTimePeriod_title_7">\u0020до\u0020</string>
+    <string name="NewTimePeriod_title_8">\nМінімальна кількість ігор для того щоб гравець попав в рейтинг:\u0020</string>
+
+    <string name="RatingPeriod_title_0">Виберіть інформацію яку Ви хочете побачити для періоду:</string>
+    <string name="RatingPeriod_title_1">Загальний рейтинг</string>
+    <string name="RatingPeriod_title_2">Яку кількість ігор зіграно гравцями</string>
+    <string name="RatingPeriod_title_3">Перемога доном</string>
+    <string name="RatingPeriod_title_4">Перемога шерифом</string>
+    <string name="RatingPeriod_title_5">Перемога мафією</string>
+    <string name="RatingPeriod_title_6">Перемога мирним</string>
+    <string name="RatingPeriod_title_7">Кращі гравці</string>
+    <string name="RatingPeriod_title_8">Найчастіше убієнні</string>
+    <string name="RatingPeriod_title_9">Інтуїти періоду</string>
+
+    <string name="ShowRating_title_0">Список гравців,\u0020</string>
+    <string name="ShowRating_title_1">з їх рейтингом</string>
+    <string name="ShowRating_title_2">з їх кількістю ігор</string>
+    <string name="ShowRating_title_3">з найбільшою кількістю ігор з перемогою\u0020</string>
+    <string name="ShowRating_title_4">доном</string>
+    <string name="ShowRating_title_5">шерифом</string>
+    <string name="ShowRating_title_6">мафією</string>
+    <string name="ShowRating_title_7">мирним</string>
+    <string name="ShowRating_title_8">які отримували кращого гравця в грі(кількість ігор)</string>
+    <string name="ShowRating_title_9">які були найчастіше вбиті в першу ніч(кількість ігор)</string>
+    <string name="ShowRating_title_10">які були вбиті в першу ніч, і назвали мафію(кількість названих мафій)</string>
+    <string name="ShowRating_title_11">Для вашого запиту не існує жодного гравця! Змініть мінімальну кількість ігор, або часовий період, щоб отримати результат.</string>
+    <string name="ShowRating_title_12">Кількість ігор в даному періоді:\u0020</string>
+
+    <string name="LeaderNewPeriod_title_0">Створення нового періоду.</string>
+    <string name="LeaderNewPeriod_title_1">Початок періоду</string>
+    <string name="LeaderNewPeriod_title_2">Кінець періоду</string>
+    <string name="LeaderNewPeriod_title_3">Мінімальна кількість ігор</string>
+    <string name="LeaderNewPeriod_title_4">Для завершення створення періоду, дайте йому назву :</string>
+    <string name="LeaderNewPeriod_title_5">назва періоду</string>
+    <string name="LeaderNewPeriod_title_6">Ви не вказали назву періоду</string>
+
+    <string name="PeriodsList_title_0">Виберіть період</string>
+    <string name="PeriodsList_title_1">На даний момент не існує жодного періоду</string>
+
+
+</resources>

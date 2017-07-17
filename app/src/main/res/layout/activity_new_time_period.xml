@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_new_time_period"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.nazar.mafia.NewTimePeriod">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="90dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/title_0"
+        app:srcCompat="@drawable/emblem" />
+
+    <TextView
+        android:id="@+id/tv_NewTimePeriod_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="casual"
+        android:textAlignment="center"
+        android:text="@string/NewTimePeriod_title_0"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_NewTimePeriod_date_strart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_NewTimePeriod_1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/ShowGame_title_1"
+        android:onClick="onTextClickNewTimePeriod"
+        android:clickable="true"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_NewTimePeriod_date_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_NewTimePeriod_date_strart"
+        android:layout_centerHorizontal="true"
+        android:text="@string/ShowGame_title_2"
+        android:onClick="onTextClickNewTimePeriod"
+        android:clickable="true"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/tv_NewTimePeriod_numberGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_NewTimePeriod_date_end"
+        android:layout_marginTop="10dp"
+        android:text="@string/NewTimePeriod_title_1"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/eT_NewTimePeriod_numberGame"
+        android:layout_below="@+id/tv_NewTimePeriod_numberGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginLeft="2dp"
+        android:hint="@string/NewTimePeriod_title_2"
+        android:layout_marginTop="10dp"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/bt_NewTimePeriod_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NewTimePeriod_title_3"
+        android:onClick="onTextClickNewTimePeriod"
+        android:layout_below="@+id/eT_NewTimePeriod_numberGame"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_NewTimePeriod_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_NewTimePeriod_search"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="14sp"/>
+
+    <Button
+        android:id="@+id/bt_NewTimePeriod_add_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NewTimePeriod_title_4"
+        android:onClick="onTextClickNewTimePeriod"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_NewTimePeriod_1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:onClick="onTextClickNewTimePeriod"
+        android:clickable="true"
+        android:contentDescription="@string/title_1"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+</RelativeLayout>

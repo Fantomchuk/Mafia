@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/darker_gray"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="5dp"
+    android:id="@+id/rL_item_result_player"
+    >
+
+    <LinearLayout
+        android:id="@+id/ll_item_result_nickName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/item_result_nickName_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="@string/PlayersInGame_title_00" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_nickName_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="№1" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_nickName_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15.5dp"
+            android:text="@string/PlayerPage_title_1" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_nickName_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Fantom" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_item_result_role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_item_result_nickName"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_role_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_result_title_0" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_role_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23.5dp"
+            android:text="@string/PlayerPage_title_1" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_role_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="MAFIA" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_item_result_killed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_item_result_role"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_killed_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ChoiceKilled_title_11" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_killed_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="47dp"
+            android:text="@string/PlayerPage_title_1" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_killed_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="1 ніч" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_item_result_courseGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_item_result_killed"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_courseGame_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_result_title_1" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_courseGame_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/PlayerPage_title_1" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_courseGame_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="2 мафії" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_item_result_winner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_item_result_courseGame"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_winner_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/item_result_title_2" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_winner_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13.5dp"
+            android:text="@string/PlayerPage_title_1" />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_winner_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Перемога" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_item_result_preferable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_item_result_winner"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/item_result_preferable_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="@string/PlayersInGameList_title_3" />
+    </LinearLayout>
+
+
+</RelativeLayout>
