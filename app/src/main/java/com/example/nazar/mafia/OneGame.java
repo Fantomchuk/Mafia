@@ -1,17 +1,11 @@
 package com.example.nazar.mafia;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.TextUtils;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-/**
- * Created by Nazar on 7/12/2017.
- */
 
 public class OneGame {
 

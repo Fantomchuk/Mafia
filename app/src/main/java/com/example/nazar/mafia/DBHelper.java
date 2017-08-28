@@ -9,9 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-/**
- * Created by Nazar on 6/29/2017.
- */
+
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -215,6 +213,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static long convertStringDataToLong(String date) {
         long result = 0;
+        if (date == null)
+            return result;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         try {

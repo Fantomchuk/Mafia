@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,7 +51,7 @@ public class PlayersList extends AppCompatActivity {
     private ArrayList<Map<String, String>> arrayForAdapter(ArrayList<Map<String, String>> data){
         Map<String, String> m;
         for (int i = 0; i < nickName.length; i++) {
-            m = new HashMap<String, String>();
+            m = new HashMap<>();
             m.put(ATTRIBUTE_NICK_NAME_TEXT, nickName[i]);
             m.put(ATTRIBUTE_NAME_TEXT, name[i]);
             m.put(ATTRIBUTE_SURNAME_TEXT, surname[i]);
@@ -98,7 +97,7 @@ public class PlayersList extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
         SQLiteDatabase database = dbHelper.getWritableDatabase();
 
-        String str_sql="";
+        String str_sql;
         String[] selectionArgs = null;
         if(user_title.equals(DBHelper.KEY_TITLE[6]) ) {
             str_sql = "select users.nickName, users.userName, users.userSurname, users.userStartPlay " +
@@ -123,7 +122,7 @@ public class PlayersList extends AppCompatActivity {
         dbHelper.close();
 
         textView_playersList.setText(title_for_listViw);
-        data = new ArrayList<Map<String, String>>(nickName.length);
+        data = new ArrayList<>(nickName.length);
         data = arrayForAdapter(data);
         String[] from = new String[] {ATTRIBUTE_NICK_NAME_TEXT, ATTRIBUTE_NAME_TEXT, ATTRIBUTE_SURNAME_TEXT};
         int[] to = new int[] { R.id.item_user_1, R.id.item_user_3, R.id.item_user_4 };

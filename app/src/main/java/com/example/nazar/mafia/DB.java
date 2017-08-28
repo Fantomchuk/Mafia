@@ -5,13 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-/**
- * Created by Nazar on 7/4/2017.
- */
 
 public class DB {
     private final Context context;
@@ -47,8 +43,8 @@ public class DB {
 
     public int getPlayerId(String name_, String surName_) {
         Cursor cursor;
-        String str_sql = "";
-        String[] selectionArgs = null;
+        String str_sql;
+        String[] selectionArgs;
         str_sql = "select users._id " +
                 "from users " +
                 "where users.userName = ? and users.userSurname = ?";
@@ -68,8 +64,8 @@ public class DB {
 
     public String getPlayerNickName(String name_, String surName_) {
         Cursor cursor;
-        String str_sql = "";
-        String[] selectionArgs = null;
+        String str_sql;
+        String[] selectionArgs;
         str_sql = "select users.nickName " +
                 "from users " +
                 "where users.userName = ? and users.userSurname = ?";
@@ -89,8 +85,8 @@ public class DB {
 
     public String getPlayerNickName(int id) {
         Cursor cursor;
-        String str_sql = "";
-        String[] selectionArgs = null;
+        String str_sql;
+        String[] selectionArgs;
         str_sql = "select users.nickName " +
                 "from users " +
                 "where users._id = ? ";
@@ -132,8 +128,8 @@ public class DB {
     public boolean isPresentLeaderInDB(int userId_) {
         String userId = String.valueOf(userId_);
         Cursor cursor;
-        String str_sql = "";
-        String[] selectionArgs = null;
+        String str_sql;
+        String[] selectionArgs;
         str_sql = "select passwords._id " +
                 "from passwords " +
                 "where passwords.usersId = ? ";

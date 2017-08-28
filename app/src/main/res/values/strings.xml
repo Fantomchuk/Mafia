@@ -3,6 +3,7 @@
 
     <string name="title_0">emblem</string>
     <string name="title_1">back</string>
+    <string name="title_2">death</string>
 
     <string name="dialog_pass_title_1">Nick Name:</string>
     <string name="dialog_pass_title_2">Name</string>
@@ -15,6 +16,8 @@
     <string name="UserChoice_title_3">ведучий</string>
     <string name="UserChoice_title_4">Ведучого з таким іменем не існує!</string>
     <string name="UserChoice_title_5">Пароль не вірний</string>
+    <string name="UserChoice_title_6">Не подано нікнейм</string>
+    <string name="UserChoice_title_7">Не подано пароль</string>
 
     <string name="UserMain_title_1">Наші координати клубу</string>
     <string name="UserMain_title_2">Гравці нашого клубу</string>
@@ -145,8 +148,8 @@
     <string name="PlayersInGameList_title_2">Хід гри</string>
     <string name="PlayersInGameList_title_3">Кращий гравець</string>
     <string name="PlayersInGameList_title_4">Переможці</string>
-    <string name="PlayersInGameList_title_5">Перевірити всі дані, і вивести результат гри на  екран</string>
-    <string name="PlayersInGameList_title_6">Завершити гру</string>
+    <string name="PlayersInGameList_title_5">Pезультат гри на  екран</string>
+    <string name="PlayersInGameList_title_6">Записати і завершити гру</string>
     <string name="PlayersInGameList_title_7">жодної мафії</string>
     <string name="PlayersInGameList_title_8">1 мафія</string>
     <string name="PlayersInGameList_title_9">2 мафії</string>
@@ -158,6 +161,7 @@
     <string name="PlayersInGameList_title_15">МАФІЯ</string>
     <string name="PlayersInGameList_title_16">ШЕРИФ</string>
     <string name="PlayersInGameList_title_17">ДОН</string>
+    <string name="PlayersInGameList_title_18">Почати нове коло</string>
 
     <string name="ChoiceKilled_title_0">Гравців які:</string>
     <string name="ChoiceKilled_title_11">Вбитий в</string>
@@ -168,8 +172,6 @@
     <string name="ChoiceKilled_title_5">Вибраний Вами гравець вже вбитий</string>
     <string name="ChoiceKilled_title_6">Ніхто</string>
 
-    <string name="dialog_CourseGame_title_0">Введіть кількість правельно вказаних мафій. \n Результат може бути 0,1,2,3. \n Якщо був самостріл, вкажіть 0</string>
-    <string name="dialog_CourseGame_title_1">0,1,2,3?</string>
     <string name="dialog_StartGame_title_1">Виберіть переможців гри</string>
     <string name="dialog_StartGame_title_2">мирні</string>
     <string name="dialog_StartGame_title_3">мафія</string>
@@ -259,9 +261,40 @@
     <string name="LeaderNewPeriod_title_4">Для завершення створення періоду, дайте йому назву :</string>
     <string name="LeaderNewPeriod_title_5">назва періоду</string>
     <string name="LeaderNewPeriod_title_6">Ви не вказали назву періоду</string>
+    <string name="LeaderNewPeriod_title_7">Створено новий період:\u0020</string>
 
     <string name="PeriodsList_title_0">Виберіть період</string>
     <string name="PeriodsList_title_1">На даний момент не існує жодного періоду</string>
+
+    <string name="StartDay_title_1">Виберіть виставленого гравця</string>
+    <string name="StartDay_title_2">00:00</string>
+    <string name="StartDay_title_3">Старт</string>
+    <string name="StartDay_title_4">Скинути</string>
+    <string name="StartDay_title_5">Виставляю гравця</string>
+    <string name="StartDay_title_6">Виставлені гравці на голосування</string>
+    <string name="StartDay_title_7">Голосування</string>
+    <string name="StartDay_title_8">Список для голусування пустий</string>
+    <string name="StartDay_title_9">Продовжити</string>
+    <string name="StartDay_title_10">Зупинити</string>
+    <string name="StartDay_title_11">час вийшов</string>
+    <string name="StartDay_title_12">ФОЛ</string>
+
+
+    <string name="Voiting_title_0">Виберіть гравця який покидає гру</string>
+    <string name="Voiting_title_1">Хто - покидає гру?</string>
+    <string name="Voiting_title_2">Ніхто не покидає гру</string>
+    <string name="Voiting_title_3">Автокатастрофа</string>
+    <string name="Voiting_title_4">й виставлений:\u0020</string>
+    <string name="Voiting_title_5">\u0020- покидає гру.</string>
+    <string name="Voiting_title_6">Виберіть гравця з списку</string>
+
+    <string-array name="StartGame_course_game">
+        <item>Самостріл</item>
+        <item>Вказана 1 мафія</item>
+        <item>Вказано 2 мафії</item>
+        <item>Вказано 3 мафії</item>
+        <item>Не вказано жодної мафії</item>
+    </string-array>
 
 
 </resources>

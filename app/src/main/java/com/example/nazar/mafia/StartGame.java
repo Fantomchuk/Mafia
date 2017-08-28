@@ -1,35 +1,29 @@
 package com.example.nazar.mafia;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import static com.example.nazar.mafia.R.id.eT_pas_2;
+public class StartGame extends AppCompatActivity implements MyDialogQuestion.MyDialogListener, MyDialogList.MyDialogListListener{
 
-public class StartGame extends AppCompatActivity {
-
-    private static final int DIALOG_FOR_COURSE_GAME = 1;
-    private static final int DIALOG_WINNERS = 2;
-    private static final int DIALOG_CLOSE = 3;
     public static final String INTENT_ACTION_PREFERABLE = "intent_action_preferable";
 
     Intent intent_inputs;
     int idLeaderFromUsersTable;
     ArrayList<String> nickName = new ArrayList<>(10);
     ArrayList<Integer> userId = new ArrayList<>(10);
+    ArrayList<Integer> usersIdWhoFinishedGame = new ArrayList<>(10);
+    ArrayList<Integer> usersNotificationsInGame = new ArrayList<>(10);
     ArrayList<String> role = new ArrayList<>(10);
     String nickNameLeader, dateGame;
     int numberGame;
@@ -37,9 +31,12 @@ public class StartGame extends AppCompatActivity {
     Boolean flagIsRole = false;
     int idKilled_1_night = -1, idKilled_2_night = -1, idKilled_3_night = -1;
     int courseGame = -1;
-    EditText eT_CourseGame_1;
     int idPreferablePlayer = -1;
     int isRedWin = -1;
+    int positionKilled_1 = -1,positionKilled_2 = -1,positionKilled_3 = -1;
+
+    MyDialogQuestion dlg_team_winner, dlg_close_activity;
+    MyDialogList dlg_course_game;
 
     public static final String KEY_KILLED_1_NIGHT = "killed_1_night_key";
     public static final String KEY_KILLED_2_NIGHT = "killed_2_night_key";
@@ -47,16 +44,43 @@ public class StartGame extends AppCompatActivity {
     public static final String KEY_COURSE_GAME = "course_game_key";
     public static final String KEY_PREFERABLE_PLAYER = "preferable_player_key";
     public static final String KEY_WINNER_TEAM = "winner_team_key";
+    public static final String KEY_USERS_ID_WHO_FINISHED = "users_id_who_finished_key";
+    public static final String KEY_USERS_NOTIFICATIONS = "users_notifications_key";
 
     private static final int REQUEST_KILLED = 1;
     private static final int REQUEST_PREFERABLE = 2;
+    private static final int REQUEST_START_DAY = 3;
     private static final int REQUEST_CODE_FINISH_NEW_GAME = 555;
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("idKilled_1_night", idKilled_1_night);
+        outState.putInt("idKilled_2_night", idKilled_2_night);
+        outState.putInt("idKilled_3_night", idKilled_3_night);
+        outState.putInt("courseGame", courseGame);
+        outState.putInt("idPreferablePlayer", idPreferablePlayer);
+        outState.putInt("isRedWin", isRedWin);
+        outState.putInt("positionKilled_1", positionKilled_1);
+        outState.putInt("positionKilled_2", positionKilled_2);
+        outState.putInt("positionKilled_3", positionKilled_3);
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_game);
+        if (savedInstanceState != null) {
+            idKilled_1_night = savedInstanceState.getInt("idKilled_1_night");
+            idKilled_2_night = savedInstanceState.getInt("idKilled_2_night");
+            idKilled_3_night = savedInstanceState.getInt("idKilled_3_night");
+            courseGame = savedInstanceState.getInt("courseGame");
+            idPreferablePlayer = savedInstanceState.getInt("idPreferablePlayer");
+            isRedWin = savedInstanceState.getInt("isRedWin");
+            positionKilled_1 = savedInstanceState.getInt("positionKilled_1");
+            positionKilled_2 = savedInstanceState.getInt("positionKilled_2");
+            positionKilled_3 = savedInstanceState.getInt("positionKilled_3");
+        }
 
         intent_inputs = getIntent();
         idLeaderFromUsersTable = intent_inputs.getIntExtra(NewGame.KEY_FOR_LEADER_ID, -1);
@@ -67,8 +91,28 @@ public class StartGame extends AppCompatActivity {
         userId = intent_inputs.getIntegerArrayListExtra(PlayersInGame.KEY_USER_ID);
         role =  intent_inputs.getStringArrayListExtra(PlayersInGameRole.KEY_ROLE_ARRAY_LIST);
 
+//        idLeaderFromUsersTable = 1;
+//        nickNameLeader = "Bazailio";
+//        numberGame = 1;
+//        dateGame = "22.02.2017";
+//        nickName.add("Fantom"); userId.add(2); role.add(PlayersInGameRole.KEY_ROLE_DON);
+//        nickName.add("Raskat"); userId.add(3); role.add(PlayersInGameRole.KEY_ROLE_SHERIF);
+//        nickName.add("Felix"); userId.add(4); role.add(PlayersInGameRole.KEY_ROLE_MAF);
+//        nickName.add("Doom"); userId.add(5); role.add(PlayersInGameRole.KEY_ROLE_MAF);
+//        nickName.add("Jack"); userId.add(6); role.add(PlayersInGameRole.KEY_ROLE_SITIZEN);
+//        nickName.add("Grisha"); userId.add(10); role.add(PlayersInGameRole.KEY_ROLE_SITIZEN);
+//        nickName.add("Nukolka"); userId.add(11); role.add(PlayersInGameRole.KEY_ROLE_SITIZEN);
+//        nickName.add("Tomat"); userId.add(13); role.add(PlayersInGameRole.KEY_ROLE_SITIZEN);
+//        nickName.add("Byron"); userId.add(14); role.add(PlayersInGameRole.KEY_ROLE_SITIZEN);
+//        nickName.add("Nusya"); userId.add(12); role.add(PlayersInGameRole.KEY_ROLE_SITIZEN);
+
         TextView tv_StartGame_number_game, tv_StartGame_date, tv_StartGame_leader;
         number_places = getResources().getStringArray(R.array.PlayersInGame_title_number);
+
+        for(int i=0; i < 10; i++) {
+            usersIdWhoFinishedGame.add(i, -1);
+            usersNotificationsInGame.add(i, 0);
+        }
 
         tv_StartGame_number_game = (TextView) findViewById(R.id.tv_StartGame_number_game);
         tv_StartGame_number_game.setText(String.valueOf(numberGame));
@@ -81,30 +125,32 @@ public class StartGame extends AppCompatActivity {
     }
 
     private void changeViewGame() {
-        ArrayList<String> temp = new ArrayList<>(10);
         Button btton = (Button) findViewById(R.id.bt_StartGame_show_role);
-        temp = (flagIsRole) ? role : nickName;
         btton.setText((flagIsRole) ? getResources().getString(R.string.StartGame_title_1) : getResources().getString(R.string.PlayersInGameList_title_0));
         flagIsRole = !flagIsRole;
 
-        combineVariables(R.id.tv_StartGame_num_player_1, number_places[0], R.id.tv_StartGame_player_1, temp.get(0));
-        combineVariables(R.id.tv_StartGame_num_player_2, number_places[1], R.id.tv_StartGame_player_2, temp.get(1));
-        combineVariables(R.id.tv_StartGame_num_player_3, number_places[2], R.id.tv_StartGame_player_3, temp.get(2));
-        combineVariables(R.id.tv_StartGame_num_player_4, number_places[3], R.id.tv_StartGame_player_4, temp.get(3));
-        combineVariables(R.id.tv_StartGame_num_player_5, number_places[4], R.id.tv_StartGame_player_5, temp.get(4));
-        combineVariables(R.id.tv_StartGame_num_player_6, number_places[5], R.id.tv_StartGame_player_6, temp.get(5));
-        combineVariables(R.id.tv_StartGame_num_player_7, number_places[6], R.id.tv_StartGame_player_7, temp.get(6));
-        combineVariables(R.id.tv_StartGame_num_player_8, number_places[7], R.id.tv_StartGame_player_8, temp.get(7));
-        combineVariables(R.id.tv_StartGame_num_player_9, number_places[8], R.id.tv_StartGame_player_9, temp.get(8));
-        combineVariables(R.id.tv_StartGame_num_player_10, number_places[9], R.id.tv_StartGame_player_10, temp.get(9));
+        combineVariables(R.id.ll_StartGame_player_1, 0);
+        combineVariables(R.id.ll_StartGame_player_2, 1);
+        combineVariables(R.id.ll_StartGame_player_3, 2);
+        combineVariables(R.id.ll_StartGame_player_4, 3);
+        combineVariables(R.id.ll_StartGame_player_5, 4);
+        combineVariables(R.id.ll_StartGame_player_6, 5);
+        combineVariables(R.id.ll_StartGame_player_7, 6);
+        combineVariables(R.id.ll_StartGame_player_8, 7);
+        combineVariables(R.id.ll_StartGame_player_9, 8);
+        combineVariables(R.id.ll_StartGame_player_10,9);
     }
 
-    private void combineVariables(int id1, String number, int id2, String temp) {
+    private void combineVariables(int id_LinearLayout, int num) {
+        LinearLayout ll = (LinearLayout) findViewById(id_LinearLayout);
         TextView textView1, textView2;
-        textView1 = (TextView) findViewById(id1);
-        textView1.setText(number);
-        textView2 = (TextView) findViewById(id2);
-        textView2.setText(temp);
+        textView1 = (TextView)ll.getChildAt(1);
+        textView1.setText(number_places[num]);
+        textView2 = (TextView)ll.getChildAt(2);
+        if (flagIsRole)
+            textView2.setText(nickName.get(num));
+        else
+            textView2.setText(role.get(num));
 
         switch (textView2.getText().toString()) {
             case PlayersInGameRole.KEY_ROLE_DON:
@@ -128,7 +174,18 @@ public class StartGame extends AppCompatActivity {
                 textView2.setTextColor(Color.argb(255, 0, 0, 0));
                 break;
         }
-
+        if (usersIdWhoFinishedGame.get(num) != -1){
+            ImageView tv_StartGame_player_10_img = (ImageView)ll.getChildAt(0);
+            tv_StartGame_player_10_img.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.death));
+            tv_StartGame_player_10_img.setVisibility(View.VISIBLE);
+            if (flagIsRole)
+                textView2.setVisibility(View.GONE);
+            else {
+                textView2.setVisibility(View.VISIBLE);
+                textView2.setBackgroundColor(Color.argb(50, 100, 255, 255));
+                textView2.setTextColor(Color.argb(255, 0, 0, 0));
+            }
+        }
     }
 
     public void onTextClickStartGame(View view) {
@@ -149,7 +206,11 @@ public class StartGame extends AppCompatActivity {
                 startActivityForResult(intent_killed, REQUEST_KILLED);
                 break;
             case R.id.bt_StartGame_add_course_game:
-                showDialog(DIALOG_FOR_COURSE_GAME);
+                dlg_course_game = new MyDialogList();
+                dlg_course_game.setTitileDialog(getResources().getString(R.string.item_result_title_1));
+                dlg_course_game.setIconDialog(android.R.drawable.ic_dialog_info);
+                dlg_course_game.setDataAdapterDialog(getResources().getStringArray(R.array.StartGame_course_game));
+                dlg_course_game.show(getFragmentManager(), "dlg_course_game");
                 break;
             case R.id.bt_StartGame_add_preferable:
                 Intent intent_preferable = new Intent(this, ChoicePlayer.class);
@@ -159,11 +220,25 @@ public class StartGame extends AppCompatActivity {
                 startActivityForResult(intent_preferable, REQUEST_PREFERABLE);
                 break;
             case R.id.bt_StartGame_add_win:
-                showDialog(DIALOG_WINNERS);
+                dlg_team_winner = new MyDialogQuestion();
+                dlg_team_winner.setTitileDialog(getResources().getString(R.string.PlayersInGameList_title_4));
+                dlg_team_winner.setIconDialog(android.R.drawable.ic_dialog_info);
+                dlg_team_winner.setMessageDialog(getResources().getString(R.string.dialog_StartGame_title_1));
+                dlg_team_winner.setTextBtnPositive(getResources().getString(R.string.dialog_StartGame_title_2));
+                dlg_team_winner.setTextBtnNegative(getResources().getString(R.string.dialog_StartGame_title_3));
+                dlg_team_winner.show(getFragmentManager(), "dlg_team_winner");
                 break;
             case R.id.bt_StartGame_check_all:
                 if (checkAllinGame())
                     goToLastActivity();
+                break;
+            case R.id.bt_StartGame_start_day:
+                Intent intent_start_day = new Intent(this, StartDay.class);
+                intent_start_day.putStringArrayListExtra(PlayersInGame.KEY_NICK_NAME_ARRAY_LIST, nickName);
+                intent_start_day.putIntegerArrayListExtra(PlayersInGame.KEY_USER_ID, userId);
+                intent_start_day.putIntegerArrayListExtra(KEY_USERS_ID_WHO_FINISHED, usersIdWhoFinishedGame);
+                intent_start_day.putIntegerArrayListExtra(KEY_USERS_NOTIFICATIONS, usersNotificationsInGame);
+                startActivityForResult(intent_start_day, REQUEST_START_DAY);
                 break;
         }
     }
@@ -208,8 +283,42 @@ public class StartGame extends AppCompatActivity {
             case REQUEST_KILLED:
                 if (resultCode == RESULT_OK) {
                     idKilled_1_night = data.getIntExtra(KEY_KILLED_1_NIGHT, -1);
+                    if(idKilled_1_night != -1 && idKilled_1_night != 0) {
+                        if(positionKilled_1 != -1){
+                            usersIdWhoFinishedGame.set(positionKilled_1, -1);
+                        }
+                        positionKilled_1 = userId.indexOf(idKilled_1_night);
+                        usersIdWhoFinishedGame.set(positionKilled_1, idKilled_1_night);
+                    }else{
+                        if(positionKilled_1 != -1){
+                            usersIdWhoFinishedGame.set(positionKilled_1, -1);
+                        }
+                    }
                     idKilled_2_night = data.getIntExtra(KEY_KILLED_2_NIGHT, -1);
+                    if(idKilled_2_night != -1 && idKilled_2_night != 0) {
+                        if(positionKilled_2 != -1){
+                            usersIdWhoFinishedGame.set(positionKilled_2, -1);
+                        }
+                        positionKilled_2 = userId.indexOf(idKilled_2_night);
+                        usersIdWhoFinishedGame.set(positionKilled_2, idKilled_2_night);
+                    }else{
+                        if(positionKilled_2 != -1){
+                            usersIdWhoFinishedGame.set(positionKilled_2, -1);
+                        }
+                    }
                     idKilled_3_night = data.getIntExtra(KEY_KILLED_3_NIGHT, -1);
+                    if(idKilled_3_night != -1 && idKilled_3_night != 0) {
+                        if(positionKilled_3 != -1){
+                            usersIdWhoFinishedGame.set(positionKilled_3, -1);
+                        }
+                        positionKilled_3 = userId.indexOf(idKilled_3_night);
+                        usersIdWhoFinishedGame.set(positionKilled_3, idKilled_3_night);
+                    }else{
+                        if(positionKilled_3 != -1){
+                            usersIdWhoFinishedGame.set(positionKilled_3, -1);
+                        }
+                    }
+                    changeViewGame(); changeViewGame();
                 }
                 break;
             case REQUEST_PREFERABLE:
@@ -228,92 +337,48 @@ public class StartGame extends AppCompatActivity {
                     }
                 }
                 break;
-        }
-    }
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_FOR_COURSE_GAME) {
-            AlertDialog.Builder adb = new AlertDialog.Builder(this);
-            adb.setTitle(R.string.PlayersInGameList_title_2);
-            adb.setIcon(android.R.drawable.ic_dialog_info);
-            LinearLayout ll_pas = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_course_game, null);
-            adb.setView(ll_pas);
-            return adb.create();
-        }
-        if (id == DIALOG_WINNERS){
-            AlertDialog.Builder adb = new AlertDialog.Builder(this);
-            adb.setTitle(R.string.PlayersInGameList_title_4);
-            adb.setIcon(android.R.drawable.ic_dialog_info);
-            adb.setMessage(R.string.dialog_StartGame_title_1);
-            adb.setPositiveButton(R.string.dialog_StartGame_title_2, myClickListener_winner);
-            adb.setNegativeButton(R.string.dialog_StartGame_title_3, myClickListener_winner);
-            adb.setNeutralButton(R.string.NewPlayer_title_13, myClickListener_winner);
-            return adb.create();
-        }
-        if (id == DIALOG_CLOSE){
-            AlertDialog.Builder adb = new AlertDialog.Builder(this);
-            adb.setTitle(R.string.dialog_StartGame_title_4);
-            adb.setIcon(android.R.drawable.ic_dialog_info);
-            adb.setMessage(R.string.dialog_StartGame_title_5);
-            adb.setPositiveButton(R.string.dialog_StartGame_title_6, myClickListener_back);
-            adb.setNeutralButton(R.string.NewPlayer_title_13, myClickListener_back);
-            return adb.create();
-        }
-        return super.onCreateDialog(id);
-    }
-    @Override
-    protected void onPrepareDialog(int id, final Dialog dialog) {
-        super.onPrepareDialog(id, dialog);
-        if (id == DIALOG_FOR_COURSE_GAME) {
-            // find EditText end Button in DIALOG_FOR_PASSWORD
-            eT_CourseGame_1 = (EditText) dialog.findViewById(R.id.eT_CourseGame_1);
-            Button bT_CourseGame_1 = (Button) dialog.findViewById(R.id.bT_CourseGame_1);
-
-            bT_CourseGame_1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(!TextUtils.isEmpty(eT_CourseGame_1.getText().toString())) {
-                        int numeric = Integer.valueOf(eT_CourseGame_1.getText().toString());
-                        if (numeric >= 0 && numeric < 4)
-                            courseGame = numeric;
-                    }
-                    dialog.cancel();
+            case REQUEST_START_DAY:
+                if (resultCode == RESULT_OK) {
+                    usersIdWhoFinishedGame = data.getIntegerArrayListExtra(StartGame.KEY_USERS_ID_WHO_FINISHED);
+                    usersNotificationsInGame = data.getIntegerArrayListExtra(StartGame.KEY_USERS_NOTIFICATIONS);
+                    changeViewGame(); changeViewGame();
                 }
-            });
+                break;
         }
     }
 
-    DialogInterface.OnClickListener myClickListener_winner = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
-            switch (i) {
-                case Dialog.BUTTON_POSITIVE:
-                    isRedWin = 1;
-                    break;
-                case Dialog.BUTTON_NEGATIVE:
-                    isRedWin = 0;
-                    break;
-                case Dialog.BUTTON_NEUTRAL:
-                    break;
-            }
-        }
-    };
-
-    DialogInterface.OnClickListener myClickListener_back = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
-            switch (i) {
-                case Dialog.BUTTON_POSITIVE:
-                    finish();
-                    break;
-                case Dialog.BUTTON_NEUTRAL:
-                    break;
-            }
-        }
-    };
     @Override
     public void onBackPressed() {
-        showDialog(DIALOG_CLOSE);
+        dlg_close_activity = new MyDialogQuestion();
+        dlg_close_activity.setTitileDialog(getResources().getString(R.string.dialog_StartGame_title_4));
+        dlg_close_activity.setIconDialog(android.R.drawable.ic_dialog_info);
+        dlg_close_activity.setMessageDialog(getResources().getString(R.string.dialog_StartGame_title_5));
+        dlg_close_activity.setTextBtnNeutral(getResources().getString(R.string.dialog_StartGame_title_6));
+        dlg_close_activity.show(getFragmentManager(), "dlg_close_activity");
+    }
+
+    @Override
+    public void clickPositiveButton(Boolean res) {
+        if (res)
+            isRedWin = 1;
+    }
+
+    @Override
+    public void clickNegativeButton(Boolean res) {
+        if (res)
+            isRedWin = 0;
+    }
+
+    @Override
+    public void clickNeutralButton(Boolean res) {
+        finish();
+    }
+
+    @Override
+    public void positionInList(int position) {
+        if (position == 4)
+            courseGame = 0;
+        else
+            courseGame = position;
     }
 }

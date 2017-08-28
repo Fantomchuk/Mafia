@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.R.attr.data;
-
 public class PlayersInGame extends AppCompatActivity {
 
     public static final String ATTRIBUTE_NUMBER_TEXT = "number_text_at";
@@ -35,8 +33,8 @@ public class PlayersInGame extends AppCompatActivity {
     private static final int REQUEST_CODE_FINISH_NEW_GAME = 555;
 
 
-    ArrayList<String> nickName = new ArrayList<String>(10);
-    ArrayList<Integer> userId = new ArrayList<Integer>(10);
+    ArrayList<String> nickName = new ArrayList<>(10);
+    ArrayList<Integer> userId = new ArrayList<>(10);
     Intent intent_inputs;
     ListView listView_PlayersInGame;
     String[] number_players;
@@ -59,7 +57,7 @@ public class PlayersInGame extends AppCompatActivity {
         }
 
         number_players = getResources().getStringArray(R.array.PlayersInGame_title_number);
-        data_list = new ArrayList<Map<String, String>>(number_players.length);
+        data_list = new ArrayList<>(number_players.length);
         data_list = arrayForAdapter_list(data_list, nickName, number_players);
 
         String[] from = new String[] {ATTRIBUTE_NUMBER_TEXT, ATTRIBUTE_NICKNAME_TEXT};
@@ -106,7 +104,7 @@ public class PlayersInGame extends AppCompatActivity {
     private void createDataForAdapter() {
         DBHelper dbHelper = new DBHelper(this);
         SQLiteDatabase database = dbHelper.getWritableDatabase();
-        String str_sql = "";
+        String str_sql;
         str_sql = "select users.nickName, users.userName, users.userSurname, users.userStartPlay from users ";
         Cursor cursor = database.rawQuery(str_sql, null);
 
@@ -134,7 +132,7 @@ public class PlayersInGame extends AppCompatActivity {
     private ArrayList<Map<String, String>> arrayForAdapter_list(ArrayList<Map<String, String>> data_list, ArrayList<String> nickName, String[] number_players){
         Map<String, String> m;
         for (int i = 0; i < number_players.length; i++) {
-            m = new HashMap<String, String>();
+            m = new HashMap<>();
             m.put(ATTRIBUTE_NUMBER_TEXT, number_players[i]);
             m.put(ATTRIBUTE_NICKNAME_TEXT, nickName.get(i));
             data_list.add(m);

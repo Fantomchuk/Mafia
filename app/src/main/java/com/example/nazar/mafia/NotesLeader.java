@@ -1,10 +1,7 @@
 package com.example.nazar.mafia;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,10 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class NotesLeader extends AppCompatActivity {
-
-    private static final int DIALOG_DELETE_NOTE = 1;
-    private static final int DIALOG_UPDATE_NOTE = 2;
+public class NotesLeader extends AppCompatActivity implements MyDialogQuestion.MyDialogListener{
 
     LinearLayout ll_NotesLeader_view_1,ll_NotesLeader_view_2,ll_NotesLeader_view_3,ll_NotesLeader_view_4,ll_NotesLeader_view_5;
     ListView lv_NotesLeader;
@@ -86,7 +80,12 @@ public class NotesLeader extends AppCompatActivity {
     public void onTextClickNotesLeader_view_4(View view) {
         switch (view.getId()){
             case R.id.bt_NotesLeader_delete_note:
-                showDialog(DIALOG_DELETE_NOTE);
+                MyDialogQuestion dlg_delete_note = new MyDialogQuestion();
+                dlg_delete_note.setTitileDialog(getResources().getString(R.string.NotesLeader_title_12));
+                dlg_delete_note.setIconDialog(android.R.drawable.ic_dialog_info);
+                dlg_delete_note.setTextBtnNegative(getResources().getString(R.string.NotesLeader_title_8));
+                dlg_delete_note.setTextBtnNeutral(getResources().getString(R.string.NotesLeader_title_7));
+                dlg_delete_note.show(getFragmentManager(), "dlg_delete_note");
                 ll_NotesLeader_view_4.setVisibility(View.GONE);
                 ll_NotesLeader_view_3.setVisibility(View.VISIBLE);
                 break;
@@ -118,7 +117,12 @@ public class NotesLeader extends AppCompatActivity {
                     Toast.makeText(this, R.string.NotesLeader_title_10,Toast.LENGTH_SHORT).show();
                     return;
                 }
-                showDialog(DIALOG_UPDATE_NOTE);
+                MyDialogQuestion dlg_update_note = new MyDialogQuestion();
+                dlg_update_note.setTitileDialog(getResources().getString(R.string.NotesLeader_title_13));
+                dlg_update_note.setIconDialog(android.R.drawable.ic_dialog_info);
+                dlg_update_note.setTextBtnPositive(getResources().getString(R.string.NotesLeader_title_6));
+                dlg_update_note.setTextBtnNeutral(getResources().getString(R.string.NotesLeader_title_7));
+                dlg_update_note.show(getFragmentManager(), "dlg_update_note");
                 ll_NotesLeader_view_5.setVisibility(View.GONE);
                 ll_NotesLeader_view_3.setVisibility(View.VISIBLE);
                 break;
@@ -189,54 +193,27 @@ public class NotesLeader extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_DELETE_NOTE) {
-            //створюємо конструктор діалогу
-            AlertDialog.Builder builder;
-            builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.NotesLeader_title_12);
-            builder.setIcon(android.R.drawable.ic_dialog_info);
-            //додаємо кнопку позитивної відповіді
-            builder.setPositiveButton(R.string.NotesLeader_title_8, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    DB db = new DB(NotesLeader.this);
-                    db.open();
-                    db.deleteNoteFromDB(title);
-                    db.close();
-                    notes.remove(titles.indexOf(title));
-                    titles.remove(title);
-                    adapter.notifyDataSetChanged();
-                }
-            });
-            //додаємо кнопку негативну відповідь
-            builder.setNegativeButton(R.string.NotesLeader_title_7, null);
-            builder.setCancelable(true);
-            return builder.create();
-        }
-        if (id == DIALOG_UPDATE_NOTE) {
-            //створюємо конструктор діалогу
-            AlertDialog.Builder builder;
-            builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.NotesLeader_title_13);
-            builder.setIcon(android.R.drawable.ic_dialog_info);
-            //додаємо кнопку позитивної відповіді
-            builder.setPositiveButton(R.string.NotesLeader_title_6, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    DB db = new DB(NotesLeader.this);
-                    db.open();
-                    db.updateNoteFromDB(title, updateNote);
-                    db.close();
-                    notes.set(titles.indexOf(title), updateNote);
-                }
-            });
-            //додаємо кнопку негативну відповідь
-            builder.setNegativeButton(R.string.NotesLeader_title_7, null);
-            builder.setCancelable(true);
-            return builder.create();
-        }
-        return super.onCreateDialog(id);
+    public void clickPositiveButton(Boolean res) {
+        DB db = new DB(NotesLeader.this);
+        db.open();
+        db.updateNoteFromDB(title, updateNote);
+        db.close();
+        notes.set(titles.indexOf(title), updateNote);
     }
 
+    @Override
+    public void clickNegativeButton(Boolean res) {
+        DB db = new DB(NotesLeader.this);
+        db.open();
+        db.deleteNoteFromDB(title);
+        db.close();
+        notes.remove(titles.indexOf(title));
+        titles.remove(title);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void clickNeutralButton(Boolean res) {
+
+    }
 }

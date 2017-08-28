@@ -25,7 +25,6 @@ public class RatingPeriod extends AppCompatActivity {
     public static final String INTENT_ACTION_COURSE = "intent_action_course";
     public static final String INTENT_ACTION_KILLED = "intent_action_killed";
 
-
     String dateStart, dateEnd;
     int minCountGames;
     RatingHelper rating;

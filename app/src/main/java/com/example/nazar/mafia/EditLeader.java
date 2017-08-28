@@ -1,20 +1,15 @@
 package com.example.nazar.mafia;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class EditLeader extends AppCompatActivity {
+public class EditLeader extends AppCompatActivity implements MyDialogQuestion.MyDialogListener{
 
-    private static final int DIALOG_EDIT_LEADER = 1;
     EditText eT_EditLeader_password_1, eT_EditLeader_password_2, eT_EditLeader_password_Old;
     TextView tv_EditLeader_info, tv_EditLeader_nickName;
     String pass1, pass2, oldPass;
@@ -74,44 +69,32 @@ public class EditLeader extends AppCompatActivity {
                     eT_EditLeader_password_2.setText("");
                     return;
                 }
-                showDialog(DIALOG_EDIT_LEADER);
+                MyDialogQuestion myDialogQuestion = new MyDialogQuestion();
+                myDialogQuestion.setTitileDialog(getResources().getString(R.string.EditPlayer_title_1));
+                myDialogQuestion.setMessageDialog(nickName);
+                myDialogQuestion.setIconDialog(android.R.drawable.ic_dialog_info);
+                myDialogQuestion.setTextBtnPositive(getResources().getString(R.string.NewPlayer_title_12));
+                myDialogQuestion.setTextBtnNegative(getResources().getString(R.string.NewPlayer_title_13));
+                myDialogQuestion.show(getFragmentManager(), "myDialogQuestion");
                 break;
         }
     }
 
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_EDIT_LEADER) {
-            //створюємо конструктор діалогу
-            AlertDialog.Builder builder;
-            builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.EditPlayer_title_1);
-            builder.setMessage(nickName);
-            builder.setIcon(android.R.drawable.ic_dialog_info);
-            //додаємо кнопку позитивної відповіді
-            builder.setPositiveButton(R.string.NewPlayer_title_12, myClickListener);
-            //додаємо кнопку негативну відповідь
-            builder.setNegativeButton(R.string.NewPlayer_title_13, myClickListener);
-            builder.setCancelable(true);
-            return builder.create();
-        }
-        return super.onCreateDialog(id);
+    @Override
+    public void clickPositiveButton(Boolean res) {
+        DB db = new DB(EditLeader.this);
+        db.open();
+        db.updateLeaderInTablePasswords(db.getPlayerId(name, surName), pass1);
+        db.close();
+        setResult(RESULT_OK, new Intent());
+        finish();
     }
-    DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
-            switch (i) {
-                case Dialog.BUTTON_POSITIVE:
-                    DB db = new DB(EditLeader.this);
-                    db.open();
-                    db.updateLeaderInTablePasswords(db.getPlayerId(name, surName), pass1);
-                    db.close();
-                    setResult(RESULT_OK, new Intent());
-                    finish();
-                    break;
-                case Dialog.BUTTON_NEGATIVE:
-                    tv_EditLeader_info.setText(R.string.EditPlayer_title_3);
-                    break;
-            }
-        }
-    };
+
+    @Override
+    public void clickNegativeButton(Boolean res) {
+        tv_EditLeader_info.setText(R.string.EditPlayer_title_3);
+    }
+
+    @Override
+    public void clickNeutralButton(Boolean res) {}
 }

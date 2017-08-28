@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class PlayerPage extends AppCompatActivity {
 
@@ -76,8 +74,7 @@ public class PlayerPage extends AppCompatActivity {
 
     public static String convertLongToData(long userStartPlay) {
         SimpleDateFormat formating = new SimpleDateFormat("dd.MM.yyyy");
-        String result = String.valueOf(formating.format(userStartPlay));
-        return result;
+        return String.valueOf(formating.format(userStartPlay));
     }
 
     @Override

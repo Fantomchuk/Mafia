@@ -1,30 +1,20 @@
 package com.example.nazar.mafia;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.Calendar;
-
-public class NewTimePeriod extends AppCompatActivity {
-
-    private static final int DIALOG_ADD_DATE_START = 1;
-    private static final int DIALOG_ADD_DATE_END = 2;
+public class NewTimePeriod extends AppCompatActivity implements MyDialogDatePicker.MyDialogDatePickerListener{
 
     public static final String KEY_FOR_DATA_START = "data_start_key";
     public static final String KEY_FOR_DATA_END = "data_end_key";
     public static final String KEY_FOR_MIN_COUNT_GAMES = "min_count_game_key";
-    String dateStart="",dateEnd="";
+    String dateStart = null,dateEnd = null;
+    MyDialogDatePicker dlg_add_date_start,dlg_add_date_end;
     int minCountGames;
 
 
@@ -40,7 +30,6 @@ public class NewTimePeriod extends AppCompatActivity {
         if(getIntent().getBooleanExtra(LeaderMain.KEY_FOR_LEADER, false)){
             findViewById(R.id.bt_NewTimePeriod_add_period).setVisibility(View.VISIBLE);
         }
-
     }
 
     public void onTextClickNewTimePeriod(View view) {
@@ -50,10 +39,12 @@ public class NewTimePeriod extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.tv_NewTimePeriod_date_strart:
-                showDialog(DIALOG_ADD_DATE_START);
+                dlg_add_date_start = MyDialogDatePicker.newInstance(dateStart, 1);
+                dlg_add_date_start.show(getFragmentManager(), "dlg_add_date_start");
                 break;
             case R.id.tv_NewTimePeriod_date_end:
-                showDialog(DIALOG_ADD_DATE_END);
+                dlg_add_date_end = MyDialogDatePicker.newInstance(dateEnd, 2);
+                dlg_add_date_end.show(getFragmentManager(), "dlg_add_date_end");
                 break;
             case R.id.bt_NewTimePeriod_search:
                 if (!checkingData()) return;
@@ -65,7 +56,7 @@ public class NewTimePeriod extends AppCompatActivity {
                 break;
             case R.id.bt_NewTimePeriod_add_period:
                 if (!checkingData()) return;
-                Intent intentN = new Intent(NewTimePeriod.this, LeaderNewPeriod.class);
+                Intent intentN = new Intent(this, LeaderNewPeriod.class);
                 intentN.putExtra(KEY_FOR_DATA_START, dateStart);
                 intentN.putExtra(KEY_FOR_DATA_END, dateEnd);
                 intentN.putExtra(KEY_FOR_MIN_COUNT_GAMES, minCountGames);
@@ -75,7 +66,7 @@ public class NewTimePeriod extends AppCompatActivity {
     }
 
     private boolean checkingData(){
-        if(dateStart.equals("") || dateEnd.equals("")){
+        if(dateStart==null || dateEnd==null){
             tv_NewTimePeriod_info.setText(getResources().getString(R.string.ShowGame_title_4));
             return false;
         }
@@ -86,39 +77,14 @@ public class NewTimePeriod extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_ADD_DATE_START) {
-            Calendar calendar = Calendar.getInstance();
-            DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int yearOfDialog, int monthOfDialog, int dayOfDialog) {
-                    String day = (dayOfDialog < 10) ? "0" + String.valueOf(dayOfDialog) + "." : String.valueOf(dayOfDialog) + ".";
-                    String month = (monthOfDialog + 1 < 10) ? "0" + String.valueOf(monthOfDialog + 1) + "." : String.valueOf(monthOfDialog + 1) + ".";
-                    String year = String.valueOf(yearOfDialog);
-                    dateStart = day + month + year;
-                    TextView tv = (TextView) findViewById(R.id.tv_NewTimePeriod_date_strart);
-                    tv.setText(dateStart);
-                }
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-            dpd.setCancelable(true);
-            return dpd;
+    public void dateInMyDialogDatePicker(long myDate, int requestCode) {
+        if (requestCode == 1) {
+            dateStart = PlayerPage.convertLongToData(myDate);
+            ((TextView) findViewById(R.id.tv_NewTimePeriod_date_strart)).setText(dateStart);
         }
-        if (id == DIALOG_ADD_DATE_END) {
-            Calendar calendar = Calendar.getInstance();
-            DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int yearOfDialog, int monthOfDialog, int dayOfDialog) {
-                    String day = (dayOfDialog < 10) ? "0" + String.valueOf(dayOfDialog) + "." : String.valueOf(dayOfDialog) + ".";
-                    String month = (monthOfDialog + 1 < 10) ? "0" + String.valueOf(monthOfDialog + 1) + "." : String.valueOf(monthOfDialog + 1) + ".";
-                    String year = String.valueOf(yearOfDialog);
-                    dateEnd = day + month + year;
-                    TextView tv = (TextView) findViewById(R.id.tv_NewTimePeriod_date_end);
-                    tv.setText(dateEnd);
-                }
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-            dpd.setCancelable(true);
-            return dpd;
+        else if (requestCode == 2) {
+            dateEnd = PlayerPage.convertLongToData(myDate);
+            ((TextView) findViewById(R.id.tv_NewTimePeriod_date_end)).setText(dateEnd);
         }
-        return super.onCreateDialog(id);
     }
 }

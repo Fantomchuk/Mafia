@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:id="@+id/rl_itemUserInDay">
+
+    <ImageView
+        android:id="@+id/itemUserInDay_0"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/death"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/title_2" />
+
+    <TextView
+        android:id="@+id/itemUserInDay_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/itemUserInDay_1"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/itemUserInDay_3"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:padding="0dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/itemUserInDay_4"
+        android:textSize="12sp"
+        android:text="@string/StartDay_title_12"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_marginTop="2dp"
+        android:onClick="clickItemUserInDay_Foul"/>
+
+    <TextView
+        android:id="@+id/itemUserInDay_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_centerVertical="true"
+        android:textColor="@android:color/black"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:id="@+id/itemUserInDay_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/black"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/itemUserInDay_0" />
+
+</RelativeLayout>

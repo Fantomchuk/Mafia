@@ -1,35 +1,31 @@
 package com.example.nazar.mafia;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.Calendar;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
-public class EditPlayer extends AppCompatActivity {
 
-    private static final int DIALOG_EDIT_DATE = 1;
-    private static final int DIALOG_EDIT_PLAYER = 2;
+public class EditPlayer extends AppCompatActivity implements MyDialogQuestion.MyDialogListener, MyDialogDatePicker.MyDialogDatePickerListener  {
 
     EditText eT_EditPlayer_nickName, eT_EditPlayer_name, eT_EditPlayer_surname;
     Spinner spiner_EditPlayer;
     TextView tv_EditPlayer_info;
     Intent intent_get;
-    Calendar calendar;
+    MyDialogDatePicker dlg_edit_date;
+
 
     ArrayAdapter<String> adapter;
     String old_name, old_surname;
@@ -38,6 +34,11 @@ public class EditPlayer extends AppCompatActivity {
     int title_pos;
     Boolean isLeader;
     String date;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +50,12 @@ public class EditPlayer extends AppCompatActivity {
         name = intent_get.getStringExtra(PlayersList.KEY_FOR_NAME);
         surName = intent_get.getStringExtra(PlayersList.KEY_FOR_SURNAME);
         userStartPlay = intent_get.getLongExtra(PlayersList.KEY_FOR_USER_START_PLAY, 0);
+        date = PlayerPage.convertLongToData(userStartPlay);
         user_title = intent_get.getStringExtra(TitleUser.KEY_FOR_INTENT);
         isLeader = intent_get.getBooleanExtra(LeaderMain.KEY_FOR_LEADER, false);
 
         old_name = name;
         old_surname = surName;
-
-        calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(userStartPlay);
 
         eT_EditPlayer_nickName = (EditText) findViewById(R.id.eT_EditPlayer_nickName);
         eT_EditPlayer_nickName.setText(nickName);
@@ -68,7 +67,7 @@ public class EditPlayer extends AppCompatActivity {
 
 
         String[] adapter_date = new String[DBHelper.KEY_TITLE.length - 1];
-        for (int i=0;i < DBHelper.KEY_TITLE.length - 1; i++) {
+        for (int i = 0; i < DBHelper.KEY_TITLE.length - 1; i++) {
             adapter_date[i] = DBHelper.KEY_TITLE[i];
             if (user_title.equals(DBHelper.KEY_TITLE[i]))
                 title_pos = i;
@@ -90,28 +89,41 @@ public class EditPlayer extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public void onTextClickEditPlayer(View view) {
         switch (view.getId()) {
             case R.id.bt_EditPlayer_date:
-                showDialog(DIALOG_EDIT_DATE);
+                dlg_edit_date = MyDialogDatePicker.newInstance(date, 1);
+                dlg_edit_date.show(getFragmentManager(), "dlg_edit_date");
                 break;
             case R.id.bt_EditPlayer_edit_player:
                 nickName = eT_EditPlayer_nickName.getText().toString();
                 name = eT_EditPlayer_name.getText().toString();
                 surName = eT_EditPlayer_surname.getText().toString();
 
-                if (TextUtils.isEmpty(name)) {tv_EditPlayer_info.setText(R.string.NewPlayer_title_8); return;}
-                if (TextUtils.isEmpty(surName)) {tv_EditPlayer_info.setText(R.string.NewPlayer_title_9); return;}
-                if (TextUtils.isEmpty(nickName)){tv_EditPlayer_info.setText(R.string.NewPlayer_title_10);return;}
-                if (date == null){
-                    int day = calendar.get(Calendar.DAY_OF_MONTH);
-                    int month = calendar.get(Calendar.MONTH) + 1;
-                    int year = calendar.get(Calendar.YEAR);
-                    date = day + "." + month + "." + year;
+                if (TextUtils.isEmpty(name)) {
+                    tv_EditPlayer_info.setText(R.string.NewPlayer_title_8);
+                    return;
                 }
-                showDialog(DIALOG_EDIT_PLAYER);
+                if (TextUtils.isEmpty(surName)) {
+                    tv_EditPlayer_info.setText(R.string.NewPlayer_title_9);
+                    return;
+                }
+                if (TextUtils.isEmpty(nickName)) {
+                    tv_EditPlayer_info.setText(R.string.NewPlayer_title_10);
+                    return;
+                }
+                MyDialogQuestion dlg_edit_player = new MyDialogQuestion();
+                dlg_edit_player.setTitileDialog(getResources().getString(R.string.EditPlayer_title_1));
+                dlg_edit_player.setMessageDialog(nickName);
+                dlg_edit_player.setIconDialog(android.R.drawable.ic_dialog_info);
+                dlg_edit_player.setTextBtnPositive(getResources().getString(R.string.NewPlayer_title_12));
+                dlg_edit_player.setTextBtnNegative(getResources().getString(R.string.NewPlayer_title_13));
+                dlg_edit_player.show(getFragmentManager(), "dlg_edit_player");
                 break;
             case R.id.img_EditPlayer_1:
                 onBackPressed();
@@ -119,53 +131,65 @@ public class EditPlayer extends AppCompatActivity {
         }
     }
 
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_EDIT_DATE) {
-            DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int yearOfDialog, int monthOfDialog, int dayOfDialog) {
-                    String day = (dayOfDialog < 10) ? "0" + String.valueOf(dayOfDialog) + "." : String.valueOf(dayOfDialog) + ".";
-                    String month = (monthOfDialog + 1 < 10) ? "0" + String.valueOf(monthOfDialog + 1) + "." : String.valueOf(monthOfDialog + 1) + ".";
-                    String year = String.valueOf(yearOfDialog);
-                    date = day + month + year;
-                }
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-            dpd.setCancelable(true);
-            return dpd;
-        }
-        if (id == DIALOG_EDIT_PLAYER){
-            //створюємо конструктор діалогу
-            AlertDialog.Builder builder;
-            builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.EditPlayer_title_1);
-            builder.setMessage(nickName);
-            builder.setIcon(android.R.drawable.ic_dialog_info);
-            //додаємо кнопку позитивної відповіді
-            builder.setPositiveButton(R.string.NewPlayer_title_12, myClickListener);
-            //додаємо кнопку негативну відповідь
-            builder.setNegativeButton(R.string.NewPlayer_title_13, myClickListener);
-            builder.setCancelable(true);
-            return builder.create();
-        }
-        return super.onCreateDialog(id);
+    @Override
+    public void clickPositiveButton(Boolean res) {
+        DB db = new DB(EditPlayer.this);
+        db.open();
+        int id_user = db.getPlayerId(old_name, old_surname);
+        db.updateUserInTableUsers(id_user, nickName, name, surName, title_pos, date);
+        db.close();
+        setResult(RESULT_OK, new Intent());
+        finish();
     }
-    DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
-            switch (i) {
-                case Dialog.BUTTON_POSITIVE:
-                    DB db = new DB(EditPlayer.this);
-                    db.open();
-                    int id_user = db.getPlayerId(old_name, old_surname);
-                    db.updateUserInTableUsers(id_user, nickName, name, surName, title_pos, date);
-                    db.close();
-                    setResult(RESULT_OK, new Intent());
-                    finish();
-                    break;
-                case Dialog.BUTTON_NEGATIVE:
-                    tv_EditPlayer_info.setText(R.string.EditPlayer_title_3);
-                    break;
-            }
-        }
-    };
+
+    @Override
+    public void clickNegativeButton(Boolean res) {
+        tv_EditPlayer_info.setText(R.string.EditPlayer_title_3);
+    }
+
+    @Override
+    public void clickNeutralButton(Boolean res) {}
+
+    @Override
+    public void dateInMyDialogDatePicker(long myDate, int requestCode) {
+        date = PlayerPage.convertLongToData(myDate);
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("EditPlayer Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
+    }
+
+
 }

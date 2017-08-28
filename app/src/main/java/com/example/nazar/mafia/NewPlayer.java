@@ -1,39 +1,25 @@
 package com.example.nazar.mafia;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
-public class NewPlayer extends AppCompatActivity {
-
-    private static final int DIALOG_ADD_DATE = 1;
-    private static final int DIALOG_ADD_PLAYER = 2;
+public class NewPlayer extends AppCompatActivity implements MyDialogQuestion.MyDialogListener, MyDialogDatePicker.MyDialogDatePickerListener {
 
     EditText eT_NewPlayer_nickName, eT_NewPlayer_name, eT_NewPlayer_surname;
     Button bt_NewPlayer_date;
     Spinner spiner_NewPlayer;
     TextView tv_NewPlayer_info;
+    MyDialogDatePicker dlg_add_date;
 
     ArrayAdapter<String> adapter;
 
@@ -54,8 +40,7 @@ public class NewPlayer extends AppCompatActivity {
         spiner_NewPlayer = (Spinner) findViewById(R.id.spiner_NewPlayer);
 
         String[] adapter_date = new String[DBHelper.KEY_TITLE.length - 1];
-        for (int i=0;i < DBHelper.KEY_TITLE.length - 1; i++)
-            adapter_date[i] = DBHelper.KEY_TITLE[i];
+        System.arraycopy(DBHelper.KEY_TITLE, 0, adapter_date, 0, DBHelper.KEY_TITLE.length - 1);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, adapter_date);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -77,7 +62,8 @@ public class NewPlayer extends AppCompatActivity {
     public void onTextClickNewPlayer(View view) {
         switch (view.getId()) {
             case R.id.bt_NewPlayer_date:
-                showDialog(DIALOG_ADD_DATE);
+                dlg_add_date = MyDialogDatePicker.newInstance(date, 1);
+                dlg_add_date.show(getFragmentManager(), "dlg_add_dae");
                 break;
             case R.id.bt_NewPlayer_add_player:
                 nickName = eT_NewPlayer_nickName.getText().toString();
@@ -97,7 +83,13 @@ public class NewPlayer extends AppCompatActivity {
                 }db.close();
 
                 if (date == null){tv_NewPlayer_info.setText(R.string.NewPlayer_title_11);return;}
-                showDialog(DIALOG_ADD_PLAYER);
+                MyDialogQuestion dlg_add_player = new MyDialogQuestion();
+                dlg_add_player.setTitileDialog(getResources().getString(R.string.NewPlayer_title_1));
+                dlg_add_player.setMessageDialog(nickName);
+                dlg_add_player.setIconDialog(android.R.drawable.ic_dialog_info);
+                dlg_add_player.setTextBtnPositive(getResources().getString(R.string.NewPlayer_title_5));
+                dlg_add_player.setTextBtnNegative(getResources().getString(R.string.NewPlayer_title_13));
+                dlg_add_player.show(getFragmentManager(), "dlg_add_player");
                 break;
             case R.id.img_NewPlayer_1:
                 onBackPressed();
@@ -107,55 +99,25 @@ public class NewPlayer extends AppCompatActivity {
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_ADD_DATE) {
-            Calendar calendar = Calendar.getInstance();
-            DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int yearOfDialog, int monthOfDialog, int dayOfDialog) {
-                    String day = (dayOfDialog < 10) ? "0" + String.valueOf(dayOfDialog) + "." : String.valueOf(dayOfDialog) + ".";
-                    String month = (monthOfDialog + 1 < 10) ? "0" + String.valueOf(monthOfDialog + 1) + "." : String.valueOf(monthOfDialog + 1) + ".";
-                    String year = String.valueOf(yearOfDialog);
-                    date = day + month + year;
-                    bt_NewPlayer_date.setText(R.string.NewPlayer_title_12);
-                }
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-            dpd.setCancelable(true);
-            return dpd;
-        }
-        if (id == DIALOG_ADD_PLAYER){
-            //створюємо конструктор діалогу
-            AlertDialog.Builder builder;
-            builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.NewPlayer_title_1);
-            builder.setMessage(nickName);
-            builder.setIcon(android.R.drawable.ic_dialog_info);
-            //додаємо кнопку позитивної відповіді
-            builder.setPositiveButton(R.string.NewPlayer_title_5, myClickListener);
-            //додаємо кнопку негативну відповідь
-            builder.setNegativeButton(R.string.NewPlayer_title_13, myClickListener);
-            builder.setCancelable(true);
-            return builder.create();
-        }
-        return super.onCreateDialog(id);
+    public void clickPositiveButton(Boolean res) {
+        DB db = new DB(NewPlayer.this);
+        db.open();
+        db.addPlayerToDB(nickName,name,surName,title,date);
+        db.close();
+        finish();
     }
 
-    DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
-            switch (i) {
-                case Dialog.BUTTON_POSITIVE:
-                    DB db = new DB(NewPlayer.this);
-                    db.open();
-                    db.addPlayerToDB(nickName,name,surName,title,date);
-                    db.close();
-                    finish();
-                    break;
-                case Dialog.BUTTON_NEGATIVE:
-                    tv_NewPlayer_info.setText(R.string.NewPlayer_title_14);
-                    break;
-            }
-        }
-    };
+    @Override
+    public void clickNegativeButton(Boolean res) {
+        tv_NewPlayer_info.setText(R.string.NewPlayer_title_14);
+    }
 
+    @Override
+    public void clickNeutralButton(Boolean res) {}
+
+    @Override
+    public void dateInMyDialogDatePicker(long myDate, int requestCode) {
+        date = PlayerPage.convertLongToData(myDate);
+        bt_NewPlayer_date.setText(R.string.NewPlayer_title_12);
+    }
 }

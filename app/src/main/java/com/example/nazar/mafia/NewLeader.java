@@ -1,19 +1,14 @@
 package com.example.nazar.mafia;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class NewLeader extends AppCompatActivity {
+public class NewLeader extends AppCompatActivity implements MyDialogQuestion.MyDialogListener {
 
-    private static final int DIALOG_ADD_LEADER = 1;
     EditText eT_NewLeader_name,eT_NewLeader_surname,eT_NewLeader_password_1,eT_NewLeader_password_2;
     TextView tv_NewLeader_info;
 
@@ -61,42 +56,31 @@ public class NewLeader extends AppCompatActivity {
                         return;
                     }
                 }db.close();
-                showDialog(DIALOG_ADD_LEADER);
+                MyDialogQuestion dlg_add_leader = new MyDialogQuestion();
+                dlg_add_leader.setTitileDialog(getResources().getString(R.string.NewLeader_title_1));
+                dlg_add_leader.setMessageDialog(nickName);
+                dlg_add_leader.setIconDialog(android.R.drawable.ic_dialog_info);
+                dlg_add_leader.setTextBtnPositive(getResources().getString(R.string.NewPlayer_title_5));
+                dlg_add_leader.setTextBtnNegative(getResources().getString(R.string.NewPlayer_title_13));
+                dlg_add_leader.show(getFragmentManager(), "dlg_add_leader");
                 break;
         }
     }
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_ADD_LEADER){
-            //створюємо конструктор діалогу
-            AlertDialog.Builder builder;
-            builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.NewLeader_title_1);
-            builder.setMessage(nickName);
-            builder.setIcon(android.R.drawable.ic_dialog_info);
-            //додаємо кнопку позитивної відповіді
-            builder.setPositiveButton(R.string.NewPlayer_title_5, myClickListener);
-            //додаємо кнопку негативну відповідь
-            builder.setNegativeButton(R.string.NewPlayer_title_13, myClickListener);
-            builder.setCancelable(true);
-            return builder.create();
-        }
-        return super.onCreateDialog(id);
+
+    @Override
+    public void clickPositiveButton(Boolean res) {
+        DB db = new DB(NewLeader.this);
+        db.open();
+        db.addLeaderToDB(db.getPlayerId(name, surName), pass1);
+        db.close();
+        finish();
     }
-    DialogInterface.OnClickListener myClickListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
-            switch (i) {
-                case Dialog.BUTTON_POSITIVE:
-                    DB db = new DB(NewLeader.this);
-                    db.open();
-                    db.addLeaderToDB(db.getPlayerId(name, surName), pass1);
-                    db.close();
-                    finish();
-                    break;
-                case Dialog.BUTTON_NEGATIVE:
-                    tv_NewLeader_info.setText(R.string.NewLeader_title_8);
-                    break;
-            }
-        }
-    };
+
+    @Override
+    public void clickNegativeButton(Boolean res) {
+        tv_NewLeader_info.setText(R.string.NewLeader_title_8);
+    }
+
+    @Override
+    public void clickNeutralButton(Boolean res) {}
 }

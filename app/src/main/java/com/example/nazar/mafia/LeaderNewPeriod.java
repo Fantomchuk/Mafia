@@ -1,29 +1,20 @@
 package com.example.nazar.mafia;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.Calendar;
-
-public class LeaderNewPeriod extends AppCompatActivity {
+public class LeaderNewPeriod extends AppCompatActivity implements MyDialogQuestion.MyDialogListener{
 
     String dateStart, dateEnd;
     TextView tv_LeaderNewPeriod_info;
     String periodName;
     int minCountGames;
     int idWinner;
-    private static final int DIALOG_ADD_PERIOD = 1;
 
 
     @Override
@@ -66,37 +57,31 @@ public class LeaderNewPeriod extends AppCompatActivity {
                     tv_LeaderNewPeriod_info.setText(R.string.ShowRating_title_11);
                     return;
                 }
-                showDialog(DIALOG_ADD_PERIOD);
+                MyDialogQuestion dlg_add_period = new MyDialogQuestion();
+                dlg_add_period.setTitileDialog(getResources().getText(R.string.NewTimePeriod_title_5) + periodName);
+                dlg_add_period.setMessageDialog(getResources().getText(R.string.NewTimePeriod_title_6) + dateStart +
+                        getResources().getText(R.string.NewTimePeriod_title_7) + dateEnd +
+                        getResources().getText(R.string.NewTimePeriod_title_8) + minCountGames);
+                dlg_add_period.setIconDialog(android.R.drawable.ic_dialog_info);
+                dlg_add_period.setTextBtnPositive(getResources().getString(R.string.NewTimePeriod_title_4));
+                dlg_add_period.setTextBtnNegative(getResources().getString(R.string.NewPlayer_title_13));
+                dlg_add_period.show(getFragmentManager(), "dlg_add_period");
                 break;
         }
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_ADD_PERIOD){
-            //створюємо конструктор діалогу
-            AlertDialog.Builder builder;
-            builder = new AlertDialog.Builder(this);
-            builder.setTitle(getResources().getText(R.string.NewTimePeriod_title_5) + periodName);
-            builder.setMessage(getResources().getText(R.string.NewTimePeriod_title_6) + dateStart +
-                    getResources().getText(R.string.NewTimePeriod_title_7) + dateEnd +
-                    getResources().getText(R.string.NewTimePeriod_title_8) + minCountGames);
-            builder.setIcon(android.R.drawable.ic_dialog_info);
-            //додаємо кнопку позитивної відповіді
-            builder.setPositiveButton(R.string.NewTimePeriod_title_4, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    DB db = new DB(LeaderNewPeriod.this);
-                    db.open();
-                    db.addPeriodToDB(periodName, dateStart, dateEnd, idWinner, minCountGames);
-                    db.close();
-                }
-            });
-            //додаємо кнопку негативну відповідь
-            builder.setNegativeButton(R.string.NewPlayer_title_13, null);
-            builder.setCancelable(true);
-            return builder.create();
-        }
-        return super.onCreateDialog(id);
+    public void clickPositiveButton(Boolean res) {
+        DB db = new DB(LeaderNewPeriod.this);
+        db.open();
+        db.addPeriodToDB(periodName, dateStart, dateEnd, idWinner, minCountGames);
+        db.close();
+        tv_LeaderNewPeriod_info.setText(getResources().getString(R.string.LeaderNewPeriod_title_7) + periodName);
     }
+
+    @Override
+    public void clickNegativeButton(Boolean res) {}
+
+    @Override
+    public void clickNeutralButton(Boolean res) {}
 }

@@ -19,5 +19,6 @@
         app:srcCompat="@drawable/emblem"
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
-        android:id="@+id/imageView" />
+        android:id="@+id/imageView"
+        android:contentDescription="@string/title_0" />
 </RelativeLayout>

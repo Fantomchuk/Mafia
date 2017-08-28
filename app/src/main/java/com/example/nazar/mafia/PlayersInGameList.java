@@ -9,12 +9,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 public class PlayersInGameList extends AppCompatActivity {
 
@@ -72,64 +70,7 @@ public class PlayersInGameList extends AppCompatActivity {
         courseGame = intent_inputs.getIntExtra(StartGame.KEY_COURSE_GAME, -1);
         idPreferablePlayer = intent_inputs.getIntExtra(StartGame.KEY_PREFERABLE_PLAYER, -1);
         isRedWin = intent_inputs.getIntExtra(StartGame.KEY_WINNER_TEAM, -1);
-
-//        Toast.makeText(this, String.valueOf(idKilled_1_night)+"|"+String.valueOf(idKilled_2_night)+"|"+String.valueOf(idKilled_3_night),Toast.LENGTH_SHORT).show();
-
         String[] number_places = getResources().getStringArray(R.array.PlayersInGame_title_number);
-/////////////////////////////////////////////////////////
-//        int title_id[] = {01, 22, 103, 33, 105, 44, 107, 108, 109, 110};
-//        String role_id[] = {"SITIZEN", "SHERIF", "SITIZEN", "MAFIA", "SITIZEN", "MAFIA", "SITIZEN", "SITIZEN", "SITIZEN", "DON"};
-//        String usersNickName[] = {"Bazilio", "Fantom", "Raskat", "Felix", "Doom", "Nukolka", "Den", "House", "Betford", "Grisha"};
-//        for (int i = 0; i < 10; i++) {
-//            nickName.add(usersNickName[i]);
-//            userId.add(title_id[i]);
-//            role.add(role_id[i]);
-//        }
-//        idLeaderFromUsersTable = 11;
-//        nickNameLeader = "Jack";
-//        dateGame = "22.10.2017";
-//        numberGame = 2;
-//        idKilled_1_night = 1;
-//        idKilled_2_night = 2;
-//        idKilled_3_night = 8;
-//        courseGame = 2;
-//        idPreferablePlayer = 2;
-//        isRedWin = 0;
-
-//        Toast.makeText(this, "Гра від " + dateGame + ". №" + numberGame + ". Гру проводить ведучий: " + nickNameLeader +
-//                "з ід = " + idLeaderFromUsersTable, Toast.LENGTH_SHORT).show();
-//        for (int i = 0; i < 10; i++) {
-//            Toast.makeText(this, "Гравець №" + (1 + i) + ". - " + nickName.get(i) + ". ID=" + userId.get(i) + "---" + role.get(i), Toast.LENGTH_SHORT).show();
-//        }
-//        if (idKilled_1_night != 0)
-//            Toast.makeText(this, "Перший вбитий - " + nickName.get(userId.indexOf(idKilled_1_night)), Toast.LENGTH_SHORT).show();
-//        else
-//            Toast.makeText(this, "Ніхто не вбитий 1", Toast.LENGTH_SHORT).show();
-//
-//        if (idKilled_2_night != 0)
-//            Toast.makeText(this, "2 вбитий - " + nickName.get(userId.indexOf(idKilled_2_night)), Toast.LENGTH_SHORT).show();
-//        else
-//            Toast.makeText(this, "Ніхто не вбитий 2", Toast.LENGTH_SHORT).show();
-//
-//        if (idKilled_3_night != 0)
-//            Toast.makeText(this, "3 вбитий - " + nickName.get(userId.indexOf(idKilled_3_night)), Toast.LENGTH_SHORT).show();
-//        else
-//            Toast.makeText(this, "Ніхто не вбитий 3", Toast.LENGTH_SHORT).show();
-//
-//
-//        Toast.makeText(this, "Вказано мафій - " + courseGame, Toast.LENGTH_SHORT).show();
-//
-//        if (idPreferablePlayer != 0)
-//            Toast.makeText(this, "Кращий гравець - " + nickName.get(userId.indexOf(idPreferablePlayer)), Toast.LENGTH_SHORT).show();
-//        else
-//            Toast.makeText(this, "Не має кращого", Toast.LENGTH_SHORT).show();
-//
-//        if (isRedWin == 1)
-//            Toast.makeText(this, "перемога мирних", Toast.LENGTH_SHORT).show();
-//        else
-//            Toast.makeText(this, "перемога мафії", Toast.LENGTH_SHORT).show();
-
-////////////////////////////////////////////////////////////////////////////////
 
         textView_PlayersInGameList_numberGame_3 = (TextView) findViewById(R.id.textView_PlayersInGameList_numberGame_3);
         textView_PlayersInGameList_numberGame_3.setText(String.valueOf(numberGame));
@@ -138,9 +79,7 @@ public class PlayersInGameList extends AppCompatActivity {
         textView_PlayersInGameList_date_3 = (TextView) findViewById(R.id.textView_PlayersInGameList_date_3);
         textView_PlayersInGameList_date_3.setText(dateGame);
 
-        //створюэмо наш список
         data = new ArrayList<>();
-        //заповнюємо його
         for (int i = 0; i < 10; i++) {
             m = new HashMap<>();
             m.put(ATRIBUT_RELATIVE_LAYOUT, role.get(i));

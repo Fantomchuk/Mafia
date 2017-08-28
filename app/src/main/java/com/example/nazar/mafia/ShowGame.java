@@ -1,7 +1,5 @@
 package com.example.nazar.mafia;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,17 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ShowGame extends AppCompatActivity {
+public class ShowGame extends AppCompatActivity implements MyDialogDatePicker.MyDialogDatePickerListener{
 
 
     public static final String INTENT_ACTION_SHOW_GAME = "action_show_game_intent";
@@ -39,16 +35,17 @@ public class ShowGame extends AppCompatActivity {
     int courseGame;
     int idPreferablePlayer;
     int isRedWin;
-
-    private static final int DIALOG_ADD_DATE_START = 1;
-    private static final int DIALOG_ADD_DATE_END = 2;
-    String dateStart="",dateEnd="";
+    String dateStart = null,dateEnd = null;
     ListView lv_ShowGame;
     TextView tv_ShowGame_info;
     ArrayList<Map<String, String>> data;
 
     private static final String ATTRIBUTE_NUMBER_GAME = "number_game_at";
     private static final String ATTRIBUTE_DATE_GEME = "date_game_at";
+
+    MyDialogDatePicker dlg_add_date_start;
+    MyDialogDatePicker dlg_add_date_end;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,15 +216,17 @@ public class ShowGame extends AppCompatActivity {
                 onBackPressed();
                 break;
             case R.id.tv_ShowGame_date_strart:
-                showDialog(DIALOG_ADD_DATE_START);
+                dlg_add_date_start = MyDialogDatePicker.newInstance(dateStart, 1);
+                dlg_add_date_start.show(getFragmentManager(), "dlg_add_date_start");
                 lv_ShowGame.setVisibility(View.GONE);
                 break;
             case R.id.tv_ShowGame_date_end:
-                showDialog(DIALOG_ADD_DATE_END);
+                dlg_add_date_end = MyDialogDatePicker.newInstance(dateEnd, 2);
+                dlg_add_date_end.show(getFragmentManager(), "dlg_add_date_end");
                 lv_ShowGame.setVisibility(View.GONE);
                 break;
             case R.id.bt_ShowGame_search:
-                if(dateStart.equals("") || dateEnd.equals("")){
+                if(dateStart==null || dateEnd==null){
                     lv_ShowGame.setVisibility(View.GONE);
                     tv_ShowGame_info.setVisibility(View.VISIBLE);
                     tv_ShowGame_info.setText(getResources().getString(R.string.ShowGame_title_4));
@@ -240,45 +239,6 @@ public class ShowGame extends AppCompatActivity {
                 break;
         }
     }
-
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_ADD_DATE_START) {
-            Calendar calendar = Calendar.getInstance();
-            DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int yearOfDialog, int monthOfDialog, int dayOfDialog) {
-                    String day = (dayOfDialog < 10) ? "0" + String.valueOf(dayOfDialog) + "." : String.valueOf(dayOfDialog) + ".";
-                    String month = (monthOfDialog + 1 < 10) ? "0" + String.valueOf(monthOfDialog + 1) + "." : String.valueOf(monthOfDialog + 1) + ".";
-                    String year = String.valueOf(yearOfDialog);
-                    dateStart = day + month + year;
-                    TextView tv = (TextView) findViewById(R.id.tv_ShowGame_date_strart);
-                    tv.setText(dateStart);
-                }
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-            dpd.setCancelable(true);
-            return dpd;
-        }
-        if (id == DIALOG_ADD_DATE_END) {
-            Calendar calendar = Calendar.getInstance();
-            DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker datePicker, int yearOfDialog, int monthOfDialog, int dayOfDialog) {
-                    String day = (dayOfDialog < 10) ? "0" + String.valueOf(dayOfDialog) + "." : String.valueOf(dayOfDialog) + ".";
-                    String month = (monthOfDialog + 1 < 10) ? "0" + String.valueOf(monthOfDialog + 1) + "." : String.valueOf(monthOfDialog + 1) + ".";
-                    String year = String.valueOf(yearOfDialog);
-                    dateEnd = day + month + year;
-                    TextView tv = (TextView) findViewById(R.id.tv_ShowGame_date_end);
-                    tv.setText(dateEnd);
-                }
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-            dpd.setCancelable(true);
-            return dpd;
-        }
-        return super.onCreateDialog(id);
-    }
-
 
     private void dataForShowGame(int i){
         for (int k=0; k<10; k++)
@@ -343,6 +303,18 @@ public class ShowGame extends AppCompatActivity {
         intent.putExtra(StartGame.KEY_PREFERABLE_PLAYER, idPreferablePlayer);
         intent.putExtra(StartGame.KEY_WINNER_TEAM, isRedWin);
         startActivity(intent);
+    }
+
+    @Override
+    public void dateInMyDialogDatePicker(long myDate, int requestCode) {
+        if (requestCode == 1) {
+            dateStart = PlayerPage.convertLongToData(myDate);
+            ((TextView) findViewById(R.id.tv_ShowGame_date_strart)).setText(dateStart);
+        }
+        else if (requestCode == 2) {
+            dateEnd = PlayerPage.convertLongToData(myDate);
+            ((TextView) findViewById(R.id.tv_ShowGame_date_end)).setText(dateEnd);
+        }
     }
 }
 

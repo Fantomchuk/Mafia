@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +22,8 @@ public class PlayerInGame extends AppCompatActivity {
 
     AutoCompleteTextView aCtV_PlayerInGame;
     TextView tv_PlayerInGame_info;
-    ArrayList<String> nickName = new ArrayList<String>(10);
-    ArrayList<Integer> userId = new ArrayList<Integer>(10);
+    ArrayList<String> nickName = new ArrayList<>(10);
+    ArrayList<Integer> userId = new ArrayList<>(10);
     int number_player;
     int userId_db = -1;
     String[] nickName_db, name_db, surname_db;
@@ -51,7 +50,7 @@ public class PlayerInGame extends AppCompatActivity {
         aCtV_PlayerInGame.setHint(getResources().getString(R.string.PlayersInGame_title_11) + (number_player + 1) +
                 getResources().getString(R.string.PlayerInGame_title_1));
 
-        data = new ArrayList<Map<String, String>>(nickName_db.length);
+        data = new ArrayList<>(nickName_db.length);
         data = arrayForAdapter(data);
 
         String[] from = new String[]{ATTRIBUTE_NICK_NAME_TEXT, ATTRIBUTE_NAME_TEXT, ATTRIBUTE_SURNAME_TEXT};
@@ -85,7 +84,7 @@ public class PlayerInGame extends AppCompatActivity {
     private ArrayList<Map<String, String>> arrayForAdapter(ArrayList<Map<String, String>> data){
         Map<String, String> m;
         for (int i = 0; i < nickName_db.length; i++) {
-            m = new HashMap<String, String>();
+            m = new HashMap<>();
             m.put(ATTRIBUTE_NICK_NAME_TEXT, nickName_db[i]);
             m.put(ATTRIBUTE_NAME_TEXT, name_db[i]);
             m.put(ATTRIBUTE_SURNAME_TEXT, surname_db[i]);

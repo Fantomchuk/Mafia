@@ -20,11 +20,6 @@ public class ShowRating extends AppCompatActivity {
     private static final String ATTRIBUTE_MIDDLE = "middle_atr";
     private static final String ATTRIBUTE_PLAYER_NUMBER = "player_number_atr";
 
-    private ArrayList<Integer> results = new ArrayList<>();
-    private ArrayList<Integer> games = new ArrayList<>();
-    private ArrayList<String> nickName = new ArrayList<>();
-    int minCountGames;
-
     ArrayList<Map<String, Object>> data;
     String action;
     ListView lv_ShowRating;
@@ -37,10 +32,10 @@ public class ShowRating extends AppCompatActivity {
 
         Intent intent_get = getIntent();
         action = intent_get.getAction();
-        nickName = intent_get.getStringArrayListExtra(RatingPeriod.KEY_ARRAY_PLAYERS_NICK_NAME);
-        games = intent_get.getIntegerArrayListExtra(RatingPeriod.KEY_ARRAY_PLAYERS_GAMES);
-        minCountGames = intent_get.getIntExtra(RatingPeriod.KEY_COUNT_GAME, 1);
-        results = intent_get.getIntegerArrayListExtra(RatingPeriod.KEY_ARRAY_PLAYERS_RESULT);
+        ArrayList<String> nickName = intent_get.getStringArrayListExtra(RatingPeriod.KEY_ARRAY_PLAYERS_NICK_NAME);
+        ArrayList<Integer> games = intent_get.getIntegerArrayListExtra(RatingPeriod.KEY_ARRAY_PLAYERS_GAMES);
+        int minCountGames = intent_get.getIntExtra(RatingPeriod.KEY_COUNT_GAME, 1);
+        ArrayList<Integer> results = intent_get.getIntegerArrayListExtra(RatingPeriod.KEY_ARRAY_PLAYERS_RESULT);
 
         tv_title = (TextView) findViewById(R.id.tv_ShowRating_title);
         switch (action) {
@@ -73,7 +68,7 @@ public class ShowRating extends AppCompatActivity {
                 break;
         }
 
-        for(int i=0; i < nickName.size(); i++) {
+        for(int i = 0; i < nickName.size(); i++) {
             if (games.get(i) < minCountGames || results.get(i) == 0) {
                 nickName.remove(i);
                 results.remove(i);
@@ -106,7 +101,7 @@ public class ShowRating extends AppCompatActivity {
             m.put(ATTRIBUTE_NICK_NAME, nickName.get(i));
             m.put(ATTRIBUTE_MIDDLE, "-");
             if (action.equals(RatingPeriod.INTENT_ACTION_RATING))
-                m.put(ATTRIBUTE_RESULT, (double)results.get(i)/10);
+                m.put(ATTRIBUTE_RESULT, (double) results.get(i)/10);
             else
                 m.put(ATTRIBUTE_RESULT, results.get(i));
             data.add(m);
